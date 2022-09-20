@@ -86,7 +86,7 @@ const ShowBtn = styled(motion.div)`
   right: 0;
   top: 0;
   border-radius: 0px 0px 10px 10px;
-  z-index: 9;
+  z-index: 3;
 `;
 const MoveBtn = styled.div`
   width: 100%;
@@ -262,7 +262,7 @@ const Project = () => {
           initial={{ width: "0px" }}
           animate={{
             width: show ? "100%" : "0px",
-            transition: { duration: 0.5 },
+            transition: { duration: 1 },
           }}
         >
           <ShowBtn
@@ -276,9 +276,9 @@ const Project = () => {
               },
             }}
           >
-            Show
+            Hide
           </ShowBtn>
-          <Contents id={id} />
+          <Contents id={id} show={show} />
         </ProjectText>
       </AnimatePresence>
     </Wrapper>
