@@ -114,7 +114,7 @@ const ProjectText = styled(motion.div)<{ show: boolean }>`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: white;
+  background-color: black;
   border-radius: 10px;
   display: ${(props) => (props.show ? "block" : "none")};
 `;

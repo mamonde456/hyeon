@@ -1,16 +1,14 @@
-wheel 이벤트 구현
+wheel 진행에 따라 bar의 width 가 증가되어 현재 페이지의 위치를 표시하고자 시작.
 
-project 설명란에 휠 이벤트로 진행하는 스크롤 형식의 페이지를 만들고 싶어 시작.
+framer-motion 홈페이지를 둘러보다 해당 내용이 있어 차용하기로 했다.
 
-사용하는 것은 useRef , ReactScrollWheelHandler이다. 갖가지 많은 라이브러리를 검색하고 시도해보았지만 그나마 움직이도록 만든 게 저 두가지.
+화면에 fixed해놓고 진행 상황에 따라 pathLength가 증가하도록 animation을 건다.
+여기서 문제가 발생했는데, 나의 경우에는 useRef로 가져오는 width값이 고정되어 있어(px) 아무리 스크롤을 진행해도 애니메이션이 실행되지 않았다.
 
-ReactScrollWheelHandler로 deltaY를 불러온다. onWheel 이벤트를 사용하면 deltaY 값을 가져올 수 있지만 구글링한 결과 값을 불러오는 것보다 함수 실행이 빠르다 하여, 라이브러리를 사용했다.
+여러가지로 실험해본 결과, flex 를 통해 width값을 지정하지 않고, useScroll이 가져오도록 한다.
+덕분에 레이아웃이 틀어졌지만 간단하게 css를 손보면 되는 일이니 넘어가기로 했다.
 
-먼저, contents가 들어갈 wrapper와 화면을 담당할 screenBox를 만들고, 둘 다 ref.current로 불러온다.
-typescript를 사용하기 때문에 useRef에 <HTMLDivElement> type 설정
-(나중에 선언해야지 내버려뒀다가 scrollTo를 사용하지 못해서 꽤 고생했다. 무조건... type 설정 잊지 말자.)
+style에 useScroll로 가져오는 scaleX를 넣어주면 완성.
+다만, 처음의 구조를 설계 할 때, 컨텐츠는 고정하고 화면을 움직이는 레이아웃이었어서 마우스로 스크롤을 움직이면 애니메이션이 실행되지만 휠 이벤트로는 진행되지 않는 문제가 발생.
 
-ref.scrollTo()로 휠을 컨트롤 해준다.
-left 좌표는 ref.scrollLeft + deltaY \* 5 로 휠을 움직일 때마다 스크롤이 움직이도록 했다.
-
-생각보다 구글링을 해도 얻는 것이 없어 고생 좀 했다...
+스크린 고정을 포기하고 컨텐츠 부분을 움직여 휠 이벤트와 동일한 useRef를 넣어주니 휠로 움직여도 애니메이션이 실행된다.
