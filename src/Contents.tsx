@@ -37,14 +37,13 @@ const ScrollBox = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0; */
-  background-color: black;
+  background-color: white;
 `;
 
 const TitleBox = styled.div`
   width: 100vw;
   height: 100%;
   margin-right: 600px;
-  float: left;
 `;
 
 const PageTitle = styled.h3`
@@ -67,12 +66,11 @@ const PageTitle = styled.h3`
 `;
 const ImageBox = styled(motion.div)`
   padding: 10px;
-  float: left;
+  display: flex;
   margin-right: 300px;
   .coding {
     width: 1200px;
     height: 400px;
-    float: left;
   }
 `;
 const Image = styled.div<{ bgPhoto: string }>`
@@ -87,7 +85,7 @@ const IntroTxt = styled(motion.div)`
   padding: 10px;
   width: 230px;
   height: 100px;
-  float: left;
+
   position: relative;
   right: 30px;
   top: 75%;
@@ -96,7 +94,7 @@ const IntroTxt = styled(motion.div)`
 const Boxs = styled.div`
   width: 1000px;
   height: 100%;
-  float: left;
+
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -113,7 +111,7 @@ const Boxs = styled.div`
 const Title = styled(motion.p)`
   padding: 10px;
   font-size: 62px;
-  float: left;
+
   /* margin-bottom: 50px; */
 `;
 const Box = styled(motion.div)`
@@ -145,7 +143,6 @@ const Icon = styled.svg`
 const Section = styled.div`
   width: 1200px;
   height: 100%;
-  float: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,16 +151,20 @@ const Section = styled.div`
     font-size: 32px;
     margin-bottom: 50px;
   }
+  .projectTitle {
+    width: 1200px;
+  }
 `;
 
 const UseList = styled(motion.ul)`
-  width: 100%;
+  width: 1200px;
   padding-left: 100px;
   display: flex;
   flex-direction: column;
   gap: 50px;
 `;
 const Use = styled(motion.li)`
+  width: 100%;
   padding: 10px;
   height: 120px;
   font-size: 62px;
@@ -236,6 +237,7 @@ const TabImg = styled(motion.div)<{ imgUrl: string }>`
   background-size: cover;
   background-position: center;
   margin-bottom: 20px;
+  padding: 10px;
 `;
 
 const TabTxt = styled(motion.div)`
@@ -348,21 +350,18 @@ const Contents = (props: IProps) => {
         downHandler={(e) => down(e)}
       >
         <AnimatePresence>
-          {/* <ScrollBox
-            ref={scrollRef}
-            initial={{ width: props.show ? "100vw" : "0vw" }}
-            animate={{
-              width: props.show ? "100vw" : "0vw",
-              transition: { duration: 1 },
-            }}
-          > */}
-          <svg
+          <motion.svg
             style={{
               position: "fixed",
               left: "10px",
               bottom: "20px",
               transform: "rotate(-90deg)",
               stroke: "whitesmoke",
+            }}
+            initial={{ opacity: props.show ? 1 : 0 }}
+            animate={{
+              opacity: props.show ? 1 : 0,
+              transition: { duration: 1 },
             }}
             width="100"
             height="100"
@@ -392,20 +391,11 @@ const Contents = (props: IProps) => {
                 strokeWidth: "15px",
               }}
             />
-          </svg>
+          </motion.svg>
           <Wrapper ref={containerRef}>
             <TitleBox>
               <PageTitle>Navitrip</PageTitle>
             </TitleBox>
-            <IntroTxt
-              variants={boxVar}
-              initial="start"
-              whileInView="end"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              타국의 현지 상황이나 여행 경비, 위험 지역 등의 자세한 정보를
-              실시간으로 알 수 있는 여행 플랫폼
-            </IntroTxt>
             <ImageBox
               variants={boxVar}
               initial="start"
@@ -413,6 +403,15 @@ const Contents = (props: IProps) => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 2, type: "tween" }}
             >
+              <IntroTxt
+                variants={boxVar}
+                initial="start"
+                whileInView="end"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                타국의 현지 상황이나 여행 경비, 위험 지역 등의 자세한 정보를
+                실시간으로 알 수 있는 여행 플랫폼
+              </IntroTxt>
               <Image bgPhoto="/assets/home_visual_img.jpg" />
             </ImageBox>
             <Boxs>
@@ -644,7 +643,7 @@ const Contents = (props: IProps) => {
                     {selected.imgUrl ? (
                       <TabImg
                         imgUrl={selected.imgUrl}
-                        whileTap={{ scale: 2 }}
+                        whileTap={{ scale: 2, transition: { duration: 0.5 } }}
                       ></TabImg>
                     ) : null}
                     <TabTxt>
@@ -657,7 +656,9 @@ const Contents = (props: IProps) => {
               </Outline>
             </Section>
             <Section>
-              <Title>프로젝트를 진행하며 경험한 부분</Title>
+              <Title className="projectTitle">
+                프로젝트를 진행하며 경험한 부분
+              </Title>
               <Experience
                 variants={exVar}
                 initial="start"
@@ -680,7 +681,6 @@ const Contents = (props: IProps) => {
               </Experience>
             </Section>
           </Wrapper>
-          {/* </ScrollBox> */}
         </AnimatePresence>
       </ReactScrollWheelHandler>
     </>

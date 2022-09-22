@@ -24,6 +24,10 @@ const About = () => {
       <Intro>
         안녕하세요. <span>Coder</span>가 아닌 <span>Developer</span>가 되고자
         하는 최 현지입니다.
+        <div>
+          
+          </p>
+        </div>
       </Intro>
     </Wrapper>
   );
