@@ -3,7 +3,7 @@ import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import styled from "styled-components";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { data, Idata } from "./arrayData";
+import { data, Idata } from "./projectData";
 
 const Wrapper = styled.div`
   height: 100vh;
