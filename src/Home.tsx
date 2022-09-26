@@ -292,7 +292,11 @@ const Home = () => {
                 </Icon>
               )}
               {el === 3 && (
-                <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <Icon
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 496 512"
+                  onClick={() => window.open("https://github.com/mamonde456")}
+                >
                   <motion.path
                     variants={svgVar}
                     initial="start"
@@ -310,7 +314,7 @@ const Home = () => {
         </AnimatePresence>
       </Grid>
       <AnimatePresence>
-        {id ? (
+        {id && Number(id) < 3 ? (
           <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <BackBtn>
               <BtnIcon

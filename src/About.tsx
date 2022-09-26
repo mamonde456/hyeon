@@ -62,6 +62,7 @@ const ScrollBox = styled(motion.div)`
   align-items: center;
   justify-content: center;
   transition: 0.5s, ease;
+  cursor: pointer;
   svg {
     width: 50px;
     height: 50px;
@@ -112,6 +113,9 @@ const Box = styled(motion.div)`
   display: flex;
   flex-direction: column;
   position: relative;
+  .leftScroll {
+    left: 20px !important;
+  }
 `;
 
 const Contents = styled.ul<{ bgColor: string }>`
@@ -166,7 +170,7 @@ const Inner = styled(motion.div)<{ bgColor: string }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: ${(props) => props.bgColor}; */
+
   p {
     margin-bottom: 10px;
     font-size: 18px;
@@ -285,6 +289,22 @@ const About = () => {
     setTabCount(item.id);
   };
 
+  const moveScroll = (text: string) => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (text === "right") {
+      el.scrollTo({
+        left: el.offsetWidth,
+        behavior: "smooth",
+      });
+    } else if (text === "left") {
+      el.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <ReactScrollWheelHandler
       upHandler={(e) => up(e)}
@@ -352,7 +372,7 @@ const About = () => {
             <ScrollBox
               onHoverStart={() => setWidth("80px")}
               onHoverEnd={() => setWidth("60px")}
-              transition={{ duration: 2 }}
+              onClick={() => moveScroll("right")}
             >
               <div style={{ width, height: width }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -398,6 +418,19 @@ const About = () => {
                 </Inner>
               ) : null}
             </AnimatePresence>
+            <ScrollBox
+              className="leftScroll"
+              onHoverStart={() => setWidth("80px")}
+              onHoverEnd={() => setWidth("60px")}
+              onClick={() => moveScroll("left")}
+            >
+              <div style={{ width, height: width }}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path d="M109.3 288L480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288z" />
+                </svg>
+              </div>
+              <Scroll>scroll</Scroll>
+            </ScrollBox>
           </Box>
         </div>
       </Wrapper>
