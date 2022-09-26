@@ -1,4 +1,5 @@
 export interface IAbout {
+  id: number;
   title: string;
   text: IText[];
   color: string;
@@ -10,6 +11,7 @@ interface IText {
 
 export const aboutArray = [
   {
+    id: 0,
     title: "전공을 전향한 사유",
     text: [
       {
@@ -28,6 +30,7 @@ export const aboutArray = [
     color: "#F5EFE6",
   },
   {
+    id: 1,
     title: "비전공자가 전공자를 이길 수 없나?",
     text: [
       {
@@ -46,6 +49,7 @@ export const aboutArray = [
     color: "#E8DFCA",
   },
   {
+    id: 2,
     title: "지금까지 코딩을 하면서 느낀 점",
     text: [
       {
@@ -64,6 +68,7 @@ export const aboutArray = [
     color: "#AEBDCA",
   },
   {
+    id: 3,
     title: "관심있는 분야",
     text: [
       {
