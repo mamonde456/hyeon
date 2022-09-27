@@ -8,6 +8,102 @@ interface IArray {
   text: string;
 }
 
+export interface IProject {
+  id: number;
+  title: string;
+  work: string;
+  etc: string;
+  date: string;
+  imgUrl: string;
+  pageUrl: string;
+}
+
+export const projectData = [
+  {
+    id: 0,
+    title: "navitrip",
+    work: "coding",
+    etc: "반응형",
+    date: "2022-02-02",
+    imgUrl: "/assets/homepage_img_",
+    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
+  },
+  {
+    id: 1,
+    title: "youtube clone coding",
+    work: "front-end/back-end",
+    etc: "",
+    date: "2022-02-02",
+    imgUrl: "/assets/homepage_img_",
+    pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
+  },
+  {
+    id: 2,
+    title: "nasdfasdfadsfrip",
+    work: "coding",
+    etc: "반응형",
+    date: "2022-02-02",
+    imgUrl: "/assets/homepage_img_",
+    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
+  },
+  {
+    id: 3,
+    title: "naviadfasdftrip",
+    work: "coding",
+    etc: "반응형",
+    date: "2022-02-02",
+    imgUrl: "/assets/homepage_img_",
+    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
+  },
+];
+
+export const contentsData = [
+  {
+    id: 0,
+    title: "navitrip",
+    introText:
+      "타국의 현지 상황이나 여행 경비, 위험 지역 등의 자세한 정보를 실시간으로 알 수 있는 여행 플랫폼",
+    Role: [
+      { id: 0, text: "Planning" },
+      { id: 1, text: "design" },
+      { id: 2, text: "front-end" },
+    ],
+    use: [
+      { text: "html" },
+      { text: "css3" },
+      { text: "javascript" },
+      { text: "gnuboard" },
+    ],
+    experience: [
+      { text: "전반적인 기획과 디자인 및 코딩의 과정" },
+      { text: "마크업 구조의 중요성" },
+      { text: "flex, grid 등의 css3 활용" },
+    ],
+  },
+  {
+    id: 1,
+    title: "navitrip",
+    introText:
+      "타국의 현지 상황이나 여행 경비, 위험 지역 등의 자세한 정보를 실시간으로 알 수 있는 여행 플랫폼",
+    Role: [
+      { id: 0, text: "Planning" },
+      { id: 1, text: "design" },
+      { id: 2, text: "front-end" },
+    ],
+    use: [
+      { text: "html" },
+      { text: "css3" },
+      { text: "javascript" },
+      { text: "gnuboard" },
+    ],
+    experience: [
+      { text: "전반적인 기획과 디자인 및 코딩의 과정" },
+      { text: "마크업 구조의 중요성" },
+      { text: "flex, grid 등의 css3 활용" },
+    ],
+  },
+];
+
 export const data = [
   {
     icon: "html",

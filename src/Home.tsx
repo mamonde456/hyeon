@@ -12,7 +12,6 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import About from "./About";
-import Github from "./Github";
 import Menu from "./Menu";
 import Profile from "./Profile";
 import Project from "./Project";

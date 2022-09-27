@@ -1,10 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { url } from "inspector";
 import React, { useEffect, useRef, useState } from "react";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import Accordion from "./Accordion";
+import { isShowAtom } from "./atom";
 import Contents from "./Contents";
 import Menu from "./Menu";
+import { IProject, projectData } from "./projectData";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,7 +22,7 @@ const SectionTitle = styled.h1`
   margin-bottom: 30px;
 `;
 
-const Works = styled.div`
+const Works = styled.ul`
   width: 100%;
   height: 800px;
   overflow: scroll;
@@ -36,8 +38,11 @@ const Works = styled.div`
       justify-content: space-around;
     }
   }
+  .selected {
+    height: 500px;
+  }
 `;
-const Work = styled.div`
+const Work = styled.li`
   width: 100%;
   height: 50px;
 
@@ -49,31 +54,12 @@ const Work = styled.div`
   position: relative;
 `;
 
-const Over = styled.div`
-  width: 100%;
-  height: 50px;
+const ContentsBtn = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: -100px;
+  background-color: white;
 `;
 
-const ContentsTitle = styled.div`
-  height: 50px;
-  div {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-`;
-const ContentsImg = styled.div<{ bgPhoto: string }>`
-  width: 100%;
-  height: 500px;
-  background-image: url(${(props) => props.bgPhoto});
-  background-position: center;
-  background-size: cover;
-  position: relative;
-`;
 const ShowBtn = styled(motion.div)`
   width: 150px;
   height: 50px;
@@ -87,11 +73,6 @@ const ShowBtn = styled(motion.div)`
   top: 0;
   border-radius: 0px 0px 10px 10px;
   z-index: 3;
-`;
-const MoveBtn = styled.div`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
 `;
 
 const Date = styled.p`
@@ -119,89 +100,14 @@ const ProjectText = styled(motion.div)<{ show: boolean }>`
   display: ${(props) => (props.show ? "block" : "none")};
 `;
 
-const data = [
-  {
-    id: 0,
-    title: "navitrip",
-    work: "coding",
-    etc: "반응형",
-    date: "2022-02-02",
-    imgUrl: "/assets/homepage_img_",
-    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
-  },
-  {
-    id: 1,
-    title: "youtube clone coding",
-    work: "front-end/back-end",
-    etc: "",
-    date: "2022-02-02",
-    imgUrl: "/assets/homepage_img_",
-    pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
-  },
-  {
-    id: 2,
-    title: "nasdfasdfadsfrip",
-    work: "coding",
-    etc: "반응형",
-    date: "2022-02-02",
-    imgUrl: "/assets/homepage_img_",
-    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
-  },
-  {
-    id: 3,
-    title: "naviadfasdftrip",
-    work: "coding",
-    etc: "반응형",
-    date: "2022-02-02",
-    imgUrl: "/assets/homepage_img_",
-    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
-  },
-];
-
 const Project = () => {
-  const [click, setClick] = useState(false);
-  const [duration, setDuration] = useState(500);
-  const [show, setShow] = useState(false);
-  const [id, setId] = useState<null | number>(null);
-
-  const elRef = useRef<HTMLDivElement>(null);
-
+  const [click, setClick] = useState<IProject>(projectData[0]);
   const contents = {
     number: "03",
     title: "Project",
   };
-
-  useEffect(() => {
-    if (elRef.current != null) {
-      elRef.current.style.height = "500px";
-    }
-  }, []);
-  const onShow = (event: any) => {
-    if (click) {
-      // if (event.target.parentElement.offsetHeight === 50) {
-      //   setClick(true);
-      //   event.target.parentElement.style.height = "500px";
-      // }
-      setClick(false);
-      event.target.parentElement.style.height = "50px";
-    } else if (!click) {
-      // if (event.target.parentElement.offsetHeight === 500) {
-      //   setClick(false);
-      //   event.target.parentElement.style.height = "50px";
-      // }
-      setClick(true);
-      event.target.parentElement.style.height = "500px";
-    }
-  };
-
-  const onOpen = (url: string) => {
-    window.open(url);
-  };
-
-  const onClick = (id: number) => {
-    setShow((prev) => !prev);
-    setId(id);
-  };
+  const [id, setId] = useState<null | number>(0);
+  const show = useRecoilValue(isShowAtom);
 
   return (
     <Wrapper>
@@ -216,43 +122,13 @@ const Project = () => {
             <Etc>ETC</Etc>
           </div>
         </Work>
-        {data?.map((project) => (
+        {projectData?.map((project) => (
           <Work
-            ref={project.title === data[0].title ? elRef : null}
+            className={project === click ? "selected" : ""}
             key={project.id}
+            onClick={() => setClick(project)}
           >
-            <ContentsTitle key={project.title}>
-              <div>
-                <Date>{project.date}</Date>
-                <Title>{project.title}</Title>
-                <Produce>{project.work}</Produce>
-                <Etc>{project.etc}</Etc>
-              </div>
-            </ContentsTitle>
-            <ContentsImg
-              key={`${project.title}-image`}
-              bgPhoto={
-                process.env.PUBLIC_URL + project.imgUrl + project.id + ".jpg"
-              }
-            >
-              <MoveBtn onClick={() => onOpen(project.pageUrl)}></MoveBtn>
-              <AnimatePresence>
-                <ShowBtn
-                  onClick={() => onClick(project.id)}
-                  initial={{ position: "absolute", x: 0 }}
-                  animate={{
-                    display: show ? "none" : "block",
-                    x: show ? 200 : 0,
-                    transition: {
-                      default: { duration: 1 },
-                    },
-                  }}
-                >
-                  Show
-                </ShowBtn>
-              </AnimatePresence>
-            </ContentsImg>
-            <Over onClick={(e) => onShow(e)} />
+            <Accordion data={project}></Accordion>
           </Work>
         ))}
       </Works>
@@ -264,20 +140,8 @@ const Project = () => {
             width: show ? "100%" : "0px",
             transition: { duration: 1 },
           }}
+          exit={{ width: 0 }}
         >
-          <ShowBtn
-            onClick={() => setShow((prev) => !prev)}
-            initial={{ x: 200 }}
-            animate={{
-              display: show ? "block" : "none",
-              x: show ? 0 : 200,
-              transition: {
-                default: { duration: 1 },
-              },
-            }}
-          >
-            Hide
-          </ShowBtn>
           <Contents id={id} show={show} />
         </ProjectText>
       </AnimatePresence>

@@ -2,6 +2,7 @@ import React from "react";
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
 import Header from "./Header";
+import { RecoilRoot } from "recoil";
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -66,11 +67,11 @@ a {
 
 function App() {
   return (
-    <>
+    <RecoilRoot>
       <Header />
       <GlobalStyle />
       <Router />
-    </>
+    </RecoilRoot>
   );
 }
 
