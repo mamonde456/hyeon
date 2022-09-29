@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import styled from "styled-components";
 import { aboutArray, IAbout } from "./aboutData";
-import Menu from "./Menu";
+import Menu from "./components/Menu";
 
 const Wrapper = styled.div`
   height: 100%;

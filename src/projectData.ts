@@ -82,24 +82,25 @@ export const contentsData = [
   },
   {
     id: 1,
-    title: "navitrip",
-    introText:
-      "타국의 현지 상황이나 여행 경비, 위험 지역 등의 자세한 정보를 실시간으로 알 수 있는 여행 플랫폼",
+    title: "youtube clone coding",
+    introText: "youtube를 똑같이 구현해본 웹사이트",
     Role: [
-      { id: 0, text: "Planning" },
-      { id: 1, text: "design" },
-      { id: 2, text: "front-end" },
+      { id: 0, text: "design" },
+      { id: 1, text: "front-end" },
+      { id: 2, text: "back-end" },
+      { id: 3, text: "deploy" },
     ],
     use: [
-      { text: "html" },
-      { text: "css3" },
-      { text: "javascript" },
-      { text: "gnuboard" },
+      { text: "pug" },
+      { text: "javascript ES6" },
+      { text: "node.js" },
+      { text: "MongoDB" },
     ],
     experience: [
-      { text: "전반적인 기획과 디자인 및 코딩의 과정" },
-      { text: "마크업 구조의 중요성" },
-      { text: "flex, grid 등의 css3 활용" },
+      { text: "MongoDB를 활용하여 회원가입/로그인/로그아웃 구현" },
+      { text: "github 로그인 구현" },
+      { text: "비디오 검색 기능 구현" },
+      { text: "비디오/코멘트 업로드 구현" },
     ],
   },
 ];

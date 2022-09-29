@@ -3,8 +3,8 @@ import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { contentsData, data, Idata } from "./projectData";
-import { isShowAtom } from "./atom";
+import { contentsData, data, Idata, IProject } from "../projectData";
+import { isShowAtom } from "../atom";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -285,8 +285,8 @@ const Experience = styled(motion.div)`
 `;
 
 interface IProps {
-  id: number | null;
-  show: boolean;
+  contents: IProject;
+  show: string;
 }
 
 const boxVar = {
@@ -364,6 +364,7 @@ const Contents = (props: IProps) => {
       >
         <AnimatePresence>
           <motion.svg
+            key={"circleWrap"}
             style={{
               position: "fixed",
               left: "10px",
@@ -371,9 +372,9 @@ const Contents = (props: IProps) => {
               transform: "rotate(-90deg)",
               stroke: "whitesmoke",
             }}
-            initial={{ opacity: props.show ? 1 : 0 }}
+            initial={{ opacity: props.show === "true" ? 1 : 0 }}
             animate={{
-              opacity: props.show ? 1 : 0,
+              opacity: props.show === "true" ? 1 : 0,
               transition: { duration: 1 },
             }}
             width="100"
@@ -381,6 +382,7 @@ const Contents = (props: IProps) => {
             viewBox="0 0 100 100"
           >
             <circle
+              key={"bgCircle"}
               cx="50"
               cy="50"
               r="30"
@@ -394,6 +396,7 @@ const Contents = (props: IProps) => {
               }}
             />
             <motion.circle
+              key={"moveCircle"}
               cx="50"
               cy="50"
               r="30"
@@ -408,12 +411,15 @@ const Contents = (props: IProps) => {
           <Wrapper ref={containerRef}>
             {contentsData.map((item) => (
               <>
-                {item.id === props.id ? (
+                {item.id === props.contents.id ? (
                   <>
                     <ContentsBtn
+                      key={item.id}
                       onClick={toggleBtn}
                       style={
-                        props.show ? { display: "block" } : { display: "none" }
+                        props.show === "true"
+                          ? { display: "block" }
+                          : { display: "none" }
                       }
                     >
                       <div>
@@ -602,7 +608,6 @@ const Contents = (props: IProps) => {
                       >
                         <AnimatePresence exitBeforeEnter>
                           <motion.div
-                            key={selected.icon}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 20 }}
@@ -643,7 +648,9 @@ const Contents = (props: IProps) => {
                         }}
                       >
                         {item.experience.map((item) => (
-                          <motion.div variants={exVar}>{item.text}</motion.div>
+                          <motion.div key={item.text} variants={exVar}>
+                            {item.text}
+                          </motion.div>
                         ))}
                       </Experience>
                     </Section>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-import Menu from "./Menu";
+import Menu from "./components/Menu";
 import React, { useRef, useState } from "react";
 import { LeftArrow, RightArrow } from "./arrows";
-import Header from "./Header";
+import Header from "./components/Header";
 import { Link } from "react-router-dom";
 import { motion, useScroll } from "framer-motion";
 
@@ -520,6 +520,27 @@ const Profile = () => {
                 </Box>
               </ScrollMenu>
             </ScrollBox>
+            <div style={{ marginTop: "50px", padding: "10px" }}>
+              <p
+                style={{
+                  fontWeight: 700,
+                  fontSize: "24px",
+                  marginBottom: "10px",
+                }}
+              >
+                Notion
+              </p>
+              <p
+                style={{
+                  textIndent: "10px",
+                  fontSize: "18px",
+                  cursor: "pointer",
+                }}
+                onClick={() => window.open("naver.com")}
+              >
+                link
+              </p>
+            </div>
           </Section>
         </Contents>
       </Wrapper>

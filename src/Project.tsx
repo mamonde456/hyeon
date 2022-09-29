@@ -2,10 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import Accordion from "./Accordion";
+import Accordion from "./components/Accordion";
 import { isShowAtom } from "./atom";
-import Contents from "./Contents";
-import Menu from "./Menu";
+import Contents from "./components/Contents";
+import Menu from "./components/Menu";
 import { IProject, projectData } from "./projectData";
 
 const Wrapper = styled.div`
@@ -89,7 +89,7 @@ const Etc = styled.p`
   width: 150px;
 `;
 
-const ProjectText = styled(motion.div)<{ show: boolean }>`
+const ProjectText = styled(motion.div)<{ show: string }>`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -97,7 +97,7 @@ const ProjectText = styled(motion.div)<{ show: boolean }>`
   right: 0;
   background-color: black;
   border-radius: 10px;
-  display: ${(props) => (props.show ? "block" : "none")};
+  display: ${(props) => (props.show === "true" ? "block" : "none")};
 `;
 
 const Project = () => {
@@ -106,7 +106,7 @@ const Project = () => {
     number: "03",
     title: "Project",
   };
-  const [id, setId] = useState<null | number>(0);
+
   const show = useRecoilValue(isShowAtom);
 
   return (
@@ -134,7 +134,7 @@ const Project = () => {
       </Works>
       <AnimatePresence>
         <ProjectText
-          show={show}
+          show={String(show)}
           initial={{ width: "0px" }}
           animate={{
             width: show ? "100%" : "0px",
@@ -142,7 +142,11 @@ const Project = () => {
           }}
           exit={{ width: 0 }}
         >
-          <Contents id={id} show={show} />
+          <Contents
+            contents={click}
+            key={click.title + click.id}
+            show={String(show)}
+          />
         </ProjectText>
       </AnimatePresence>
     </Wrapper>

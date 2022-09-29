@@ -10,9 +10,11 @@ import {
   useMatch,
   useNavigate,
 } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import About from "./About";
-import Menu from "./Menu";
+import { isTrue } from "./atom";
+import Menu from "./components/Menu";
 import Profile from "./Profile";
 import Project from "./Project";
 
@@ -32,7 +34,7 @@ const Grid = styled(motion.div)`
   align-items: center;
   justify-items: center;
 `;
-const Box = styled(motion.div)<{ show: boolean }>`
+const Box = styled(motion.div)<{ show: string }>`
   width: 300px;
   height: 300px;
   border-radius: 5px;
@@ -49,7 +51,7 @@ const Box = styled(motion.div)<{ show: boolean }>`
         position: absolute;
         right: 40px;
         top: 100px;
-        display: ${(props) => (props.show ? "block" : "none")};
+        display: ${(props) => (props.show === "true" ? "block" : "none")};
       }
     }
   }
@@ -64,7 +66,7 @@ const Box = styled(motion.div)<{ show: boolean }>`
         position: absolute;
         right: 60px;
         top: 100px;
-        display: ${(props) => (props.show ? "block" : "none")};
+        display: ${(props) => (props.show === "true" ? "block" : "none")};
       }
     }
   }
@@ -79,7 +81,7 @@ const Box = styled(motion.div)<{ show: boolean }>`
         position: absolute;
         right: 120px;
         top: 100px;
-        display: ${(props) => (props.show ? "block" : "none")};
+        display: ${(props) => (props.show === "true" ? "block" : "none")};
       }
     }
   }
@@ -95,7 +97,7 @@ const Box = styled(motion.div)<{ show: boolean }>`
         position: absolute;
         right: 40px;
         top: 20px;
-        display: ${(props) => (props.show ? "block" : "none")};
+        display: ${(props) => (props.show === "true" ? "block" : "none")};
       }
     }
   }
@@ -135,6 +137,7 @@ const BackBtn = styled.div`
   &:hover {
     svg {
       display: block;
+      fill: black;
     }
   }
 `;
@@ -209,6 +212,7 @@ const Home = () => {
     {
       projectMatch && setId(null);
     }
+
     console.log(window.location.pathname);
   }, []);
 
@@ -245,7 +249,7 @@ const Home = () => {
               onClick={() => onOpen(el)}
               layoutId={String(el)}
               key={el}
-              show={true}
+              show={"true"}
               style={{ cursor: "pointer" }}
             >
               {el === 0 && (
@@ -326,7 +330,7 @@ const Home = () => {
             </BackBtn>
             <Box
               layoutId={id}
-              show={false}
+              show={"false"}
               style={{
                 width: "100%",
                 height: "100%",

@@ -1,7 +1,7 @@
 import React from "react";
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
-import Header from "./Header";
+import Header from "./components/Header";
 import { RecoilRoot } from "recoil";
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,

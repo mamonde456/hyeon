@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
-import { isShowAtom } from "./atom";
-import Contents from "./Contents";
-import { IProject } from "./projectData";
+import { isShowAtom } from "../atom";
+import Contents from "../components/Contents";
+import { IProject } from "../projectData";
 
 const AccordionMenu = styled(motion.div)`
   width: 100%;
