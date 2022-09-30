@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { contentsData, data, Idata, IProject } from "../projectData";
 import { isShowAtom } from "../atom";
 

@@ -203,18 +203,7 @@ const Home = () => {
     {
       homeMatch && setId(null);
     }
-    {
-      resumeMatch && setId(null);
-    }
-    {
-      aboutMatch && setId(null);
-    }
-    {
-      projectMatch && setId(null);
-    }
-
-    console.log(window.location.pathname);
-  }, []);
+  }, [resumeMatch, aboutMatch, projectMatch]);
 
   let navigator = useNavigate();
   const onOpen = (el: number) => {
