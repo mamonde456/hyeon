@@ -41,7 +41,7 @@ const ContentsImg = styled.div<{ bgPhoto: string }>`
 `;
 
 const Date = styled.p`
-  width: 100px;
+  width: 150px;
 `;
 const Title = styled.p`
   width: 300px;

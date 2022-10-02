@@ -33,7 +33,7 @@ export const projectData = [
     title: "youtube clone coding",
     work: "front-end/back-end",
     etc: "",
-    date: "2022-02-02",
+    date: "2022-06-27 ~ 08-05",
     imgUrl: "/assets/homepage_img_",
     pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
   },

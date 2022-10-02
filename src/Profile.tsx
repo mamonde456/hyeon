@@ -158,6 +158,14 @@ const UserTitle = styled.div`
   }
 `;
 
+const ResumeBtn = styled.a`
+  width: 200px;
+  padding: 10px;
+  color: white;
+  background-color: #647e68;
+  border-radius: 10px;
+`;
+
 const Text = styled.p`
   padding: 10px;
   text-align: center;
@@ -550,25 +558,52 @@ const Profile = () => {
               </ScrollMenu>
             </ScrollBox>
             <div style={{ marginTop: "50px", padding: "10px" }}>
-              <p
+              <Title
                 style={{
                   fontWeight: 700,
                   fontSize: "24px",
-                  marginBottom: "10px",
+                  marginBottom: "30px",
                 }}
               >
                 Notion
-              </p>
-              <p
+              </Title>
+              <div
                 style={{
-                  textIndent: "10px",
-                  fontSize: "18px",
-                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "20px",
                 }}
-                onClick={() => window.open("naver.com")}
               >
-                link
-              </p>
+                <span
+                  style={{
+                    textIndent: "10px",
+                    fontSize: "18px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <ResumeBtn
+                    onClick={() =>
+                      window.open(`${process.env.PUBLIC_URL}/assets/resume.pdf`)
+                    }
+                  >
+                    이력서 열기
+                  </ResumeBtn>
+                </span>
+                <span
+                  style={{
+                    textIndent: "10px",
+                    fontSize: "18px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <ResumeBtn
+                    href={`${process.env.PUBLIC_URL}/assets/resume.pdf`}
+                    download
+                  >
+                    이력서 다운로드
+                  </ResumeBtn>
+                </span>
+              </div>
             </div>
           </Section>
         </Contents>
