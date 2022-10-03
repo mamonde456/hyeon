@@ -583,7 +583,9 @@ const Profile = () => {
                 >
                   <ResumeBtn
                     onClick={() =>
-                      window.open(`${process.env.PUBLIC_URL}/assets/resume.pdf`)
+                      window.open(
+                        `${process.env.PUBLIC_URL}/assets/resume_choi_hyeonji.pdf`
+                      )
                     }
                   >
                     이력서 열기
@@ -597,7 +599,7 @@ const Profile = () => {
                   }}
                 >
                   <ResumeBtn
-                    href={`${process.env.PUBLIC_URL}/assets/resume.pdf`}
+                    href={`${process.env.PUBLIC_URL}/assets/resume_choi_hyeonji.pdf`}
                     download
                   >
                     이력서 다운로드

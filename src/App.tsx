@@ -68,8 +68,8 @@ a {
 function App() {
   return (
     <RecoilRoot>
-      <Header />
       <GlobalStyle />
+      <Header />
       <Router />
     </RecoilRoot>
   );

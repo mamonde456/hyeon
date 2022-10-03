@@ -18,11 +18,13 @@ import Menu from "./components/Menu";
 import Profile from "./Profile";
 import Project from "./Project";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100vh;
   float: left;
   color: black;
+  overflow: hidden;
+  position: relative;
 `;
 const Grid = styled(motion.div)`
   width: 50vw;
@@ -151,6 +153,53 @@ const BtnIcon = styled.svg`
   cursor: pointer;
 `;
 
+const MsgBox = styled(motion.div)`
+  width: 300px;
+  height: 230px;
+  background-color: white;
+  border: solid 1px black;
+  position: absolute;
+  left: 100px;
+  top: 50px;
+  overflow: hidden;
+  z-index: 99999;
+  .window {
+    font-size: 18px;
+  }
+  .windowText {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .opacity {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+`;
+const BoxHeader = styled.div<{ show: string }>`
+  width: 100%;
+  height: 35px;
+  border-bottom: solid 1px black;
+  background-color: black;
+  display: flex;
+  justify-content: ${(props) => (props.show === "true" ? "center" : "end")};
+  align-items: center;
+  p {
+    color: white;
+    padding: ${(props) => (props.show === "true" ? "0px" : "10px")};
+    margin-right: ${(props) => (props.show === "true" ? "0px" : "10px")};
+    &:hover {
+      color: red;
+    }
+  }
+`;
+
+const Text = styled.p`
+  padding: 10px;
+`;
+
 const boxVar = {
   start: {
     x: -window.innerWidth,
@@ -178,19 +227,10 @@ const svgVar = {
   },
 };
 
-const showVar = {
-  start: {
-    width: 300,
-    height: 300,
-  },
-  center: {
-    width: 100 + "%",
-    height: 100 + "%",
-  },
-};
-
 const Home = () => {
   const [id, setId] = useState<null | string>(null);
+  const [show, setShow] = useState(false);
+  const constraintsRef = useRef<HTMLDivElement>(null);
   const contents = {
     number: "01",
     title: "HOME",
@@ -224,7 +264,31 @@ const Home = () => {
     navigator("/");
   };
   return (
-    <Wrapper>
+    <Wrapper ref={constraintsRef}>
+      <MsgBox
+        drag
+        dragConstraints={constraintsRef}
+        style={show ? {} : { width: "300px", height: "230px" }}
+        initial={{
+          width: "30px",
+          height: "30px",
+        }}
+        animate={{
+          width: show ? "30px" : "300px",
+          height: show ? "30px" : "230px",
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        <BoxHeader show={`${show}`}>
+          <p onClick={() => setShow((prev) => !prev)}>X</p>
+        </BoxHeader>
+        <Text>해당 웹사이트는 1920 해상도에 맞춰 제작되었습니다.</Text>
+        <Text className="window">당신의 현재 해상도:</Text>
+        <Text className="windowText">
+          {window.innerWidth} x {window.innerHeight}
+        </Text>
+        <p className="opacity">재확인은 새로고침을 눌러주세요.</p>
+      </MsgBox>
       <Menu contents={contents}></Menu>
       <Grid>
         <AnimatePresence>
