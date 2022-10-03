@@ -241,19 +241,23 @@ const Outline = styled(motion.div)`
   border-radius: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  .click {
+    height: 100% !important;
+    background-position: 0%;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 `;
 
-const TabImg = styled(motion.div)<{ imgUrl: string; click: string }>`
+const TabImg = styled(motion.div)<{ imgUrl: string }>`
   width: 100%;
-  min-height: ${(props) => (props.click === "false" ? "300px" : "100%")};
+  height: 300px;
   background-image: url(${(props) => props.imgUrl});
   background-size: cover;
   background-position: center;
   margin-bottom: 20px;
   padding: 10px;
-  position: ${(props) => (props.click === "false" ? "relative" : "fixed")};
-  left: 0;
-  top: 0;
   display: flex;
   justify-content: end;
 `;
@@ -648,7 +652,7 @@ const Contents = (props: IProps) => {
                                 imgUrl={`${
                                   process.env.PUBLIC_URL + selected.imgUrl
                                 }`}
-                                click={String(click)}
+                                className={click ? "click" : ""}
                               >
                                 <button
                                   style={{
