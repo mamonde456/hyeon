@@ -1,10 +1,4 @@
-import {
-  AnimatePresence,
-  motion,
-  MotionValue,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import styled from "styled-components";

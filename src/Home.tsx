@@ -1,22 +1,8 @@
-import { AnimatePresence, motion, usePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Outlet,
-  Route,
-  Router,
-  Routes,
-  useMatch,
-  useNavigate,
-} from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { Outlet, useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import About from "./About";
-import { isTrue } from "./atom";
 import Menu from "./components/Menu";
-import Profile from "./Profile";
-import Project from "./Project";
 
 const Wrapper = styled(motion.div)`
   width: 100%;
@@ -234,8 +220,14 @@ const svgVar = {
   },
 };
 
+interface IResize {
+  width: number;
+  height: number;
+}
+
 const Home = () => {
   const [id, setId] = useState<null | string>(null);
+  const [size, setSize] = useState<IResize>();
   const [show, setShow] = useState(false);
   const [close, setClose] = useState(false);
   const constraintsRef = useRef<HTMLDivElement>(null);
@@ -247,11 +239,30 @@ const Home = () => {
   const resumeMatch = useMatch("/resume");
   const aboutMatch = useMatch("/about");
   const projectMatch = useMatch("/project");
+
+  const windowResizeFn = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    setSize({
+      width,
+      height,
+    });
+  };
+
   useEffect(() => {
-    {
-      homeMatch && setId(null);
+    if (homeMatch) {
+      setId(null);
     }
   }, [resumeMatch, aboutMatch, projectMatch]);
+
+  useEffect(() => {
+    window.addEventListener("resize", windowResizeFn);
+
+    return () => {
+      window.removeEventListener("resize", windowResizeFn);
+    };
+  }, []);
 
   let navigator = useNavigate();
   const onOpen = (el: number) => {
@@ -303,7 +314,8 @@ const Home = () => {
         <Text>해당 웹사이트는 1920 해상도에 맞춰 제작되었습니다.</Text>
         <Text className="window">당신의 현재 해상도:</Text>
         <Text className="windowText">
-          {window.innerWidth} x {window.innerHeight}
+          {size?.width ? size?.width : window.innerWidth} x
+          {size?.height ? size?.height : window.innerHeight}
         </Text>
         <p className="opacity">재확인은 새로고침을 눌러주세요.</p>
       </MsgBox>

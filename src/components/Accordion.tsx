@@ -1,11 +1,10 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+
 import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 import { isShowAtom } from "../atom";
-import Contents from "../components/Contents";
+
 import { IProject } from "../projectData";
-import { url } from "inspector";
 
 const AccordionMenu = styled(motion.div)`
   width: 100%;
@@ -76,30 +75,6 @@ const ContentsBtn = styled.div`
     stroke: white;
     stroke-width: 20px;
   }
-`;
-const ProjectText = styled(motion.div)<{ show: boolean }>`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: black;
-  border-radius: 10px;
-  display: ${(props) => (props.show ? "block" : "none")};
-`;
-const ShowBtn = styled(motion.div)`
-  width: 150px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
-  color: black;
-  text-align: center;
-  line-height: 50px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  border-radius: 0px 0px 10px 10px;
-  z-index: 3;
 `;
 
 interface IProps {

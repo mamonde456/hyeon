@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import Menu from "./components/Menu";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { LeftArrow, RightArrow } from "./arrows";
-import Header from "./components/Header";
-import { Link } from "react-router-dom";
-import { motion, useScroll } from "framer-motion";
 
 type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;
 
@@ -60,7 +57,11 @@ const Box = styled.div`
   border-radius: 10px;
   text-align: center;
 `;
-const TabBox = styled.div``;
+const TabBox = styled.div`
+  .skill {
+    justify-content: start;
+  }
+`;
 const TabText = styled.div`
   padding: 0px 10px;
   display: flex;
@@ -132,8 +133,8 @@ const Avatar = styled.div`
 
 const Info = styled.div`
   padding: 10px;
-  padding-left: 50px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 `;
 const UserTitle = styled.div`
   /* width: 160px; */
@@ -173,6 +174,7 @@ const Text = styled.p`
 const Profile = () => {
   const [isSlide, setIsSlide] = useState(false);
   const [duration, setDuration] = React.useState(500);
+
   const contents = {
     number: "02",
     title: "RESUME",
@@ -216,51 +218,66 @@ const Profile = () => {
             <Title>Contact</Title>
             <Avatar>사진!</Avatar>
             <Info>
-              <div className="box">
-                <UserTitle>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path d="M256 352C293.2 352 319.2 334.5 334.4 318.1C343.3 308.4 358.5 307.7 368.3 316.7C378 325.7 378.6 340.9 369.6 350.6C347.7 374.5 309.7 400 256 400C202.3 400 164.3 374.5 142.4 350.6C133.4 340.9 133.1 325.7 143.7 316.7C153.5 307.7 168.7 308.4 177.6 318.1C192.8 334.5 218.8 352 256 352zM208.4 208C208.4 225.7 194 240 176.4 240C158.7 240 144.4 225.7 144.4 208C144.4 190.3 158.7 176 176.4 176C194 176 208.4 190.3 208.4 208zM304.4 208C304.4 190.3 318.7 176 336.4 176C354 176 368.4 190.3 368.4 208C368.4 225.7 354 240 336.4 240C318.7 240 304.4 225.7 304.4 208zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
-                  </svg>
-                  <p>name</p>
-                </UserTitle>
-                <Text>최현지</Text>
-              </div>
-              <div className="box">
-                <UserTitle>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path d="M0 128C0 92.65 28.65 64 64 64H448C483.3 64 512 92.65 512 128V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V128zM48 128V150.1L220.5 291.7C241.1 308.7 270.9 308.7 291.5 291.7L464 150.1V127.1C464 119.2 456.8 111.1 448 111.1H64C55.16 111.1 48 119.2 48 127.1L48 128zM48 212.2V384C48 392.8 55.16 400 64 400H448C456.8 400 464 392.8 464 384V212.2L322 328.8C283.6 360.3 228.4 360.3 189.1 328.8L48 212.2z" />
-                  </svg>
-                  <p>email</p>
-                </UserTitle>
-                <Text>mamonde456@gmail.com</Text>
-              </div>
-              <div className="box">
-                <UserTitle>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512">
-                    <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
-                  </svg>
-                  <p>Blog</p>
-                </UserTitle>
-                <Text
-                  style={{ cursor: "pointer" }}
-                  onClick={() => window.open("https://velog.io/@mamonde456")}
-                >
-                  velog.io/@mamonde456
-                </Text>
-              </div>
-              <div className="box">
-                <UserTitle>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512">
-                    <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
-                  </svg>
-                  <p>github</p>
-                </UserTitle>
-                <Text
-                  style={{ cursor: "pointer" }}
-                  onClick={() => window.open("https://github.com/mamonde456")}
-                >
-                  github.com/mamonde456
-                </Text>
+              <div>
+                {" "}
+                <div className="box">
+                  <UserTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path d="M256 352C293.2 352 319.2 334.5 334.4 318.1C343.3 308.4 358.5 307.7 368.3 316.7C378 325.7 378.6 340.9 369.6 350.6C347.7 374.5 309.7 400 256 400C202.3 400 164.3 374.5 142.4 350.6C133.4 340.9 133.1 325.7 143.7 316.7C153.5 307.7 168.7 308.4 177.6 318.1C192.8 334.5 218.8 352 256 352zM208.4 208C208.4 225.7 194 240 176.4 240C158.7 240 144.4 225.7 144.4 208C144.4 190.3 158.7 176 176.4 176C194 176 208.4 190.3 208.4 208zM304.4 208C304.4 190.3 318.7 176 336.4 176C354 176 368.4 190.3 368.4 208C368.4 225.7 354 240 336.4 240C318.7 240 304.4 225.7 304.4 208zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
+                    </svg>
+                    <p>name</p>
+                  </UserTitle>
+                  <Text>최현지</Text>
+                </div>
+                <div className="box">
+                  <UserTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path d="M0 128C0 92.65 28.65 64 64 64H448C483.3 64 512 92.65 512 128V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V128zM48 128V150.1L220.5 291.7C241.1 308.7 270.9 308.7 291.5 291.7L464 150.1V127.1C464 119.2 456.8 111.1 448 111.1H64C55.16 111.1 48 119.2 48 127.1L48 128zM48 212.2V384C48 392.8 55.16 400 64 400H448C456.8 400 464 392.8 464 384V212.2L322 328.8C283.6 360.3 228.4 360.3 189.1 328.8L48 212.2z" />
+                    </svg>
+                    <p>email</p>
+                  </UserTitle>
+                  <Text>mamonde456@gmail.com</Text>
+                </div>
+                <div className="box">
+                  <UserTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 480 512"
+                    >
+                      <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
+                    </svg>
+                    <p>Blog</p>
+                  </UserTitle>
+                  <Text
+                    style={{ cursor: "pointer" }}
+                    onClick={() => window.open("https://velog.io/@mamonde456")}
+                  >
+                    velog.io/@mamonde456
+                  </Text>
+                </div>
+                <div className="box">
+                  <UserTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 480 512"
+                    >
+                      <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
+                    </svg>
+                    <p>github</p>
+                  </UserTitle>
+                  <Text
+                    style={{ cursor: "pointer" }}
+                    onClick={() => window.open("https://github.com/mamonde456")}
+                  >
+                    github.com/mamonde456
+                  </Text>
+                </div>
               </div>
             </Info>
           </User>
@@ -406,7 +423,7 @@ const Profile = () => {
                       <TabText>
                         <span>Front-end</span>
                       </TabText>
-                      <TabText>
+                      <TabText className="skill">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 384 512"
@@ -415,7 +432,7 @@ const Profile = () => {
                         </svg>
                         HTML5
                       </TabText>
-                      <TabText>
+                      <TabText className="skill">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 384 512"
@@ -424,7 +441,7 @@ const Profile = () => {
                         </svg>
                         CSS3
                       </TabText>
-                      <TabText>
+                      <TabText className="skill">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
@@ -443,7 +460,7 @@ const Profile = () => {
                           <TabText>
                             <span>Front-end</span>
                           </TabText>
-                          <TabText>
+                          <TabText className="skill">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 640 512"
@@ -452,7 +469,7 @@ const Profile = () => {
                             </svg>
                             Sass
                           </TabText>
-                          <TabText>
+                          <TabText className="skill">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 384 512"
@@ -461,7 +478,7 @@ const Profile = () => {
                             </svg>
                             typescript
                           </TabText>
-                          <TabText>
+                          <TabText className="skill">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 512 512"
@@ -475,7 +492,7 @@ const Profile = () => {
                           <TabText>
                             <span>back-end</span>
                           </TabText>
-                          <TabText>
+                          <TabText className="skill">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 448 512"
@@ -484,7 +501,7 @@ const Profile = () => {
                             </svg>
                             Node JS
                           </TabText>
-                          <TabText>
+                          <TabText className="skill">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 640 512"
@@ -493,7 +510,7 @@ const Profile = () => {
                             </svg>
                             MongoDB
                           </TabText>
-                          <TabText>
+                          <TabText className="skill">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 640 512"
