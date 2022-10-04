@@ -25,7 +25,6 @@ const SectionTitle = styled.h1`
 const Works = styled.ul`
   width: 100%;
   height: 800px;
-  overflow: scroll;
   .title {
     border: solid 1px black;
     background-color: white;
@@ -52,27 +51,6 @@ const Work = styled.li`
   transition: ease 0.3s;
   overflow: hidden;
   position: relative;
-`;
-
-const ContentsBtn = styled.div`
-  position: absolute;
-  bottom: -100px;
-  background-color: white;
-`;
-
-const ShowBtn = styled(motion.div)`
-  width: 150px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
-  color: black;
-  text-align: center;
-  line-height: 50px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  border-radius: 0px 0px 10px 10px;
-  z-index: 3;
 `;
 
 const Date = styled.p`
@@ -142,11 +120,13 @@ const Project = () => {
           }}
           exit={{ width: 0 }}
         >
-          <Contents
-            contents={click}
-            key={click.title + click.id}
-            show={String(show)}
-          />
+          {click.title === "..." ? null : (
+            <Contents
+              contents={click}
+              key={click.title + click.id}
+              show={String(show)}
+            />
+          )}
         </ProjectText>
       </AnimatePresence>
     </Wrapper>

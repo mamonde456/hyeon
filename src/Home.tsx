@@ -153,9 +153,9 @@ const BtnIcon = styled.svg`
   cursor: pointer;
 `;
 
-const MsgBox = styled(motion.div)`
+const MsgBox = styled(motion.div)<{ close: string }>`
   width: 300px;
-  height: 230px;
+  height: 260px;
   background-color: white;
   border: solid 1px black;
   position: absolute;
@@ -163,6 +163,7 @@ const MsgBox = styled(motion.div)`
   top: 50px;
   overflow: hidden;
   z-index: 99999;
+  display: ${(props) => (props.close === "false" ? "block" : "none")};
   .window {
     font-size: 18px;
   }
@@ -180,18 +181,24 @@ const MsgBox = styled(motion.div)`
 `;
 const BoxHeader = styled.div<{ show: string }>`
   width: 100%;
-  height: 35px;
+  height: 50px;
   border-bottom: solid 1px black;
   background-color: black;
   display: flex;
   justify-content: ${(props) => (props.show === "true" ? "center" : "end")};
   align-items: center;
   p {
-    color: white;
     padding: ${(props) => (props.show === "true" ? "0px" : "10px")};
-    margin-right: ${(props) => (props.show === "true" ? "0px" : "10px")};
-    &:hover {
-      color: red;
+    span {
+      padding: 10px;
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+        &:hover {
+          fill: red;
+        }
+      }
     }
   }
 `;
@@ -230,6 +237,7 @@ const svgVar = {
 const Home = () => {
   const [id, setId] = useState<null | string>(null);
   const [show, setShow] = useState(false);
+  const [close, setClose] = useState(false);
   const constraintsRef = useRef<HTMLDivElement>(null);
   const contents = {
     number: "01",
@@ -254,8 +262,6 @@ const Home = () => {
       navigator("/about");
     } else if (el === 2) {
       navigator("/project");
-    } else if (el === 3) {
-      navigator("/github");
     }
   };
 
@@ -266,21 +272,33 @@ const Home = () => {
   return (
     <Wrapper ref={constraintsRef}>
       <MsgBox
+        close={`${close}`}
         drag
         dragConstraints={constraintsRef}
-        style={show ? {} : { width: "300px", height: "230px" }}
+        style={show ? {} : { width: "300px", height: "250px" }}
         initial={{
           width: "30px",
-          height: "30px",
+          height: "50px",
         }}
         animate={{
           width: show ? "30px" : "300px",
-          height: show ? "30px" : "230px",
+          height: show ? "50px" : "250px",
         }}
         transition={{ duration: 0.5 }}
       >
         <BoxHeader show={`${show}`}>
-          <p onClick={() => setShow((prev) => !prev)}>X</p>
+          <p>
+            <span onClick={() => setShow((prev) => !prev)}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
+              </svg>
+            </span>
+            <span onClick={() => setClose((prev) => !prev)}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+              </svg>
+            </span>
+          </p>
         </BoxHeader>
         <Text>해당 웹사이트는 1920 해상도에 맞춰 제작되었습니다.</Text>
         <Text className="window">당신의 현재 해상도:</Text>

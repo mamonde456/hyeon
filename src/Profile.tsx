@@ -10,13 +10,12 @@ import { motion, useScroll } from "framer-motion";
 type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;
 
 const Wrapper = styled.div`
-  width: 3000px;
+  width: 100%;
   height: 100%;
   background-color: #f5f5f5;
   position: absolute;
   left: 0;
   z-index: 5;
-  overflow: scroll;
 `;
 
 const Contents = styled.div`
