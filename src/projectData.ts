@@ -5,7 +5,11 @@ export interface Idata {
   Role: IRole[];
   use: IUse[];
   tabImg: ITab[];
-  experience: IUse[];
+  experience: IEx[];
+}
+interface IEx {
+  text: string;
+  url: string;
 }
 
 interface IUse {
@@ -58,7 +62,7 @@ export const projectData = [
     pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
   },
   {
-    id: 9,
+    id: 2,
     title: "...",
     work: "...",
     etc: "...",
@@ -67,7 +71,7 @@ export const projectData = [
     pageUrl: "...",
   },
   {
-    id: 9,
+    id: 3,
     title: "...",
     work: "...",
     etc: "...",
@@ -146,9 +150,9 @@ export const contentsData = [
     ],
 
     experience: [
-      { text: "전반적인 기획과 디자인 및 코딩의 과정" },
-      { text: "마크업 구조의 중요성" },
-      { text: "flex, grid 등의 css3 활용" },
+      { text: "전반적인 기획과 디자인 및 코딩의 과정", url: "" },
+      { text: "마크업 구조의 중요성", url: "" },
+      { text: "flex, grid 등의 css3 활용", url: "" },
     ],
   },
   {
@@ -215,10 +219,26 @@ export const contentsData = [
       },
     ],
     experience: [
-      { text: "MongoDB를 활용하여 회원가입/로그인/로그아웃 구현" },
-      { text: "github 로그인 구현" },
-      { text: "비디오 검색 기능 구현" },
-      { text: "비디오/코멘트 업로드 구현" },
+      {
+        text: "MongoDB를 활용하여 로그인/로그아웃 구현",
+        url: "https://velog.io/@mamonde456/NodeJS-MongoDB를-활용하여-로그인로그아웃-구현하기",
+      },
+      {
+        text: "github 로그인 구현",
+        url: "https://velog.io/@mamonde456/GitHub로-로그인-구현하기",
+      },
+      {
+        text: "MongoDB를 활용하여 비디오 검색 기능 구현",
+        url: "https://velog.io/@mamonde456/NodeJS-MongoDB를-활용하여-검색-기능-구현",
+      },
+      {
+        text: "MongoDB를 활용하여 비디오/코멘트 업로드 구현",
+        url: "https://velog.io/@mamonde456/NodeJS-MongoDB를-활용하여-댓글-업로드-구현",
+      },
+      {
+        text: "youtube-clone-coding 회고록",
+        url: "https://velog.io/@mamonde456/youtube-clone-coding을-하면서-힘들었던-점",
+      },
     ],
   },
 ];

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import Menu from "./components/Menu";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { LeftArrow, RightArrow } from "./arrows";
+import { motion } from "framer-motion";
 
 type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;
 
@@ -95,7 +96,7 @@ const Date = styled.p`
 const Title = styled.div`
   padding: 10px;
   font-size: 32px;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,11 +108,15 @@ const Title = styled.div`
   }
 `;
 
-const User = styled.div`
+const User = styled.div<{ bgPhoto: string }>`
   width: 500px;
   height: 100%;
-  padding: 10px;
-  background-color: white;
+  /* padding: 10px; */
+  background-color: black;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
+    url(${(props) => props.bgPhoto});
+  background-size: cover;
+  background-position: center;
   margin-right: 100px;
   border-radius: 10px;
   div.box {
@@ -122,19 +127,86 @@ const User = styled.div`
   }
 `;
 
-const Avatar = styled.div`
-  width: 300px;
-  height: 300px;
-  border-radius: 300px;
+const AvatarBox = styled.div`
+  width: 100%;
+  height: 700px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 80px;
+  color: white;
+  p {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    /* padding: 10px; */
+  }
+`;
+
+const Avatar = styled.div<{ bgPhoto: string }>`
+  width: 200px;
+  height: 200px;
+  border-radius: 90px;
   background-color: black;
+  background-image: url(${(props) => props.bgPhoto});
+
+  background-size: cover;
+  background-position: center;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 `;
 
 const Info = styled.div`
   padding: 10px;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: solid 1px rgba(255, 255, 255, 0.5);
+  div {
+    padding-top: 30px;
+  }
+  p {
+    display: flex;
+    justify-content: center;
+    color: white;
+    /* font-weight: 700; */
+  }
+  svg {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    fill: white;
+  }
+  .arrow {
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+  }
+  .arrow_down {
+    border-top: 0;
+    border-bottom: 20px solid black; /* 화살표 */
+  }
+`;
+
+const Msg = styled(motion.div)`
+  width: 80px;
+  height: 50px;
+  position: absolute;
+  bottom: -80px;
+  left: -10px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
   justify-content: center;
+
+  div {
+    position: absolute;
+    top: -50px;
+  }
 `;
 const UserTitle = styled.div`
   /* width: 160px; */
@@ -174,6 +246,8 @@ const Text = styled.p`
 const Profile = () => {
   const [isSlide, setIsSlide] = useState(false);
   const [duration, setDuration] = React.useState(500);
+  const [show, setShow] = useState(false);
+  const copyRef = useRef<HTMLDivElement>(null);
 
   const contents = {
     number: "02",
@@ -209,75 +283,67 @@ const Profile = () => {
   const onOpen = () => {
     window.open("https://nomadcoders.co/users/mamonde456");
   };
+
+  const onShow = async () => {
+    try {
+      await navigator.clipboard.writeText("mamonde456@gmail.com");
+      setShow(true);
+      const time = setTimeout(() => {
+        setShow(false);
+      }, 2000);
+      return () => {
+        clearTimeout(time);
+      };
+    } catch (error) {
+      setShow(false);
+    }
+  };
   return (
     <>
       <Wrapper>
         <Menu contents={contents} />
         <Contents>
-          <User>
-            <Title>Contact</Title>
-            <Avatar>사진!</Avatar>
+          <User bgPhoto={`${process.env.PUBLIC_URL}/assets/profile_img0.jpg`}>
+            <AvatarBox>
+              <Avatar
+                bgPhoto={`${process.env.PUBLIC_URL}/assets/avatar.jpg`}
+              ></Avatar>
+              <p>최현지</p>
+            </AvatarBox>
             <Info>
-              <div>
-                {" "}
-                <div className="box">
-                  <UserTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path d="M256 352C293.2 352 319.2 334.5 334.4 318.1C343.3 308.4 358.5 307.7 368.3 316.7C378 325.7 378.6 340.9 369.6 350.6C347.7 374.5 309.7 400 256 400C202.3 400 164.3 374.5 142.4 350.6C133.4 340.9 133.1 325.7 143.7 316.7C153.5 307.7 168.7 308.4 177.6 318.1C192.8 334.5 218.8 352 256 352zM208.4 208C208.4 225.7 194 240 176.4 240C158.7 240 144.4 225.7 144.4 208C144.4 190.3 158.7 176 176.4 176C194 176 208.4 190.3 208.4 208zM304.4 208C304.4 190.3 318.7 176 336.4 176C354 176 368.4 190.3 368.4 208C368.4 225.7 354 240 336.4 240C318.7 240 304.4 225.7 304.4 208zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
-                    </svg>
-                    <p>name</p>
-                  </UserTitle>
-                  <Text>최현지</Text>
+              <div style={{ position: "relative", padding: 0 }}>
+                <div onClick={onShow} style={{ cursor: "pointer" }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M0 128C0 92.65 28.65 64 64 64H448C483.3 64 512 92.65 512 128V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V128zM48 128V150.1L220.5 291.7C241.1 308.7 270.9 308.7 291.5 291.7L464 150.1V127.1C464 119.2 456.8 111.1 448 111.1H64C55.16 111.1 48 119.2 48 127.1L48 128zM48 212.2V384C48 392.8 55.16 400 64 400H448C456.8 400 464 392.8 464 384V212.2L322 328.8C283.6 360.3 228.4 360.3 189.1 328.8L48 212.2z" />
+                  </svg>
+                  <p>Email</p>
                 </div>
-                <div className="box">
-                  <UserTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path d="M0 128C0 92.65 28.65 64 64 64H448C483.3 64 512 92.65 512 128V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V128zM48 128V150.1L220.5 291.7C241.1 308.7 270.9 308.7 291.5 291.7L464 150.1V127.1C464 119.2 456.8 111.1 448 111.1H64C55.16 111.1 48 119.2 48 127.1L48 128zM48 212.2V384C48 392.8 55.16 400 64 400H448C456.8 400 464 392.8 464 384V212.2L322 328.8C283.6 360.3 228.4 360.3 189.1 328.8L48 212.2z" />
-                    </svg>
-                    <p>email</p>
-                  </UserTitle>
-                  <Text>mamonde456@gmail.com</Text>
-                </div>
-                <div className="box">
-                  <UserTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 480 512"
-                    >
-                      <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
-                    </svg>
-                    <p>Blog</p>
-                  </UserTitle>
-                  <Text
-                    style={{ cursor: "pointer" }}
-                    onClick={() => window.open("https://velog.io/@mamonde456")}
-                  >
-                    velog.io/@mamonde456
-                  </Text>
-                </div>
-                <div className="box">
-                  <UserTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 480 512"
-                    >
-                      <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
-                    </svg>
-                    <p>github</p>
-                  </UserTitle>
-                  <Text
-                    style={{ cursor: "pointer" }}
-                    onClick={() => window.open("https://github.com/mamonde456")}
-                  >
-                    github.com/mamonde456
-                  </Text>
-                </div>
+                <Msg
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: show ? 1 : 0 }}
+                  transition={{ duration: 0.2, type: "tween" }}
+                >
+                  <p>copy!!</p>
+                  <div className="arrow arrow_down"></div>
+                </Msg>
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => window.open("https://velog.io/@mamonde456")}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M446.6 222.7c-1.8-8-6.8-15.4-12.5-18.5-1.8-1-13-2.2-25-2.7-20.1-.9-22.3-1.3-28.7-5-10.1-5.9-12.8-12.3-12.9-29.5-.1-33-13.8-63.7-40.9-91.3-19.3-19.7-40.9-33-65.5-40.5-5.9-1.8-19.1-2.4-63.3-2.9-69.4-.8-84.8.6-108.4 10C45.9 59.5 14.7 96.1 3.3 142.9 1.2 151.7.7 165.8.2 246.8c-.6 101.5.1 116.4 6.4 136.5 15.6 49.6 59.9 86.3 104.4 94.3 14.8 2.7 197.3 3.3 216 .8 32.5-4.4 58-17.5 81.9-41.9 17.3-17.7 28.1-36.8 35.2-62.1 4.9-17.6 4.5-142.8 2.5-151.7zm-322.1-63.6c7.8-7.9 10-8.2 58.8-8.2 43.9 0 45.4.1 51.8 3.4 9.3 4.7 13.4 11.3 13.4 21.9 0 9.5-3.8 16.2-12.3 21.6-4.6 2.9-7.3 3.1-50.3 3.3-26.5.2-47.7-.4-50.8-1.2-16.6-4.7-22.8-28.5-10.6-40.8zm191.8 199.8l-14.9 2.4-77.5.9c-68.1.8-87.3-.4-90.9-2-7.1-3.1-13.8-11.7-14.9-19.4-1.1-7.3 2.6-17.3 8.2-22.4 7.1-6.4 10.2-6.6 97.3-6.7 89.6-.1 89.1-.1 97.6 7.8 12.1 11.3 9.5 31.2-4.9 39.4z" />
+                </svg>
+                <p>Blog</p>
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => window.open("https://github.com/mamonde456")}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512">
+                  <path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z" />
+                </svg>
+                <p>GitHub</p>
               </div>
             </Info>
           </User>

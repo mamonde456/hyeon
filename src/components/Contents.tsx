@@ -19,20 +19,31 @@ const Wrapper = styled.div`
 `;
 
 const ContentsBtn = styled.div`
-  width: 250px;
-  height: 60px;
+  width: 500px;
+  padding: 10px;
+  width: 300px;
   position: fixed;
-  right: 0;
-  div {
-    border: solid 1px white;
-    border-radius: 200px;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+  right: 10px;
+  display: flex;
+  gap: 10px;
+`;
+
+const SlideBtn = styled.div`
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border: solid 1px white;
+`;
+const HideBtn = styled.div`
+  width: 160px;
+  border: solid 1px white;
+  border-radius: 200px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   p {
-    width: 190px;
+    width: 140px;
     height: 50px;
     padding: 10px;
     background-color: white;
@@ -43,8 +54,9 @@ const ContentsBtn = styled.div`
     font-weight: 700;
   }
   svg {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
     fill: none;
   }
   path {
@@ -291,6 +303,22 @@ const Experience = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  div {
+    padding: 10px;
+  }
+  span {
+    border: solid 1px white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 30px;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+      color: black;
+      transition: ease 0.5s;
+      -webkit-transition: ease 0.5s;
+    }
+  }
 `;
 
 interface IProps {
@@ -366,6 +394,22 @@ const Contents = (props: IProps) => {
     }
   };
 
+  const onSlide = (slide: string) => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (slide === "end") {
+      el.scrollTo({
+        left: el.scrollWidth,
+        behavior: "smooth",
+      });
+    } else {
+      el.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
       <ReactScrollWheelHandler
@@ -425,14 +469,18 @@ const Contents = (props: IProps) => {
                   <>
                     <ContentsBtn
                       key={item.id}
-                      onClick={toggleBtn}
                       style={
                         props.show === "true"
-                          ? { display: "block" }
+                          ? { display: "flex" }
                           : { display: "none" }
                       }
                     >
-                      <div>
+                      {" "}
+                      <SlideBtn onClick={() => onSlide("start")}>
+                        Start
+                      </SlideBtn>
+                      <SlideBtn onClick={() => onSlide("end")}>End</SlideBtn>
+                      <HideBtn onClick={toggleBtn}>
                         <p>Hide</p>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -440,7 +488,7 @@ const Contents = (props: IProps) => {
                         >
                           <path d="M0 55.2V426c0 12.2 9.9 22 22 22c6.3 0 12.4-2.7 16.6-7.5L121.2 346l58.1 116.3c7.9 15.8 27.1 22.2 42.9 14.3s22.2-27.1 14.3-42.9L179.8 320H297.9c12.2 0 22.1-9.9 22.1-22.1c0-6.3-2.7-12.3-7.4-16.5L38.6 37.9C34.3 34.1 28.9 32 23.2 32C10.4 32 0 42.4 0 55.2z" />
                         </svg>
-                      </div>
+                      </HideBtn>
                     </ContentsBtn>
                     <TitleBox>
                       <PageTitle>{item.title}</PageTitle>
@@ -701,6 +749,11 @@ const Contents = (props: IProps) => {
                             }}
                           >
                             {item.text}
+                            {item.url === "" ? null : (
+                              <span onClick={() => window.open(item.url)}>
+                                Go to Blog
+                              </span>
+                            )}
                           </motion.div>
                         ))}
                       </Experience>
