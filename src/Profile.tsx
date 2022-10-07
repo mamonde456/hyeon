@@ -672,7 +672,7 @@ const Profile = () => {
                   }}
                 >
                   <ResumeBtn
-                    href={`${process.env.PUBLIC_URL}/assets/resume_choi_hyeonji.pdf`}
+                    href={`${process.env.PUBLIC_URL}/assets/2022_이력서_최현지.pdf`}
                     download
                   >
                     이력서 다운로드
