@@ -96,7 +96,7 @@ const Date = styled.p`
 const Title = styled.div`
   padding: 10px;
   font-size: 32px;
-  /* margin-bottom: 50px; */
+  margin-bottom: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
