@@ -120,7 +120,7 @@ const BackBtn = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 99999;
+  z-index: 999;
   text-align: center;
   &:hover {
     svg {

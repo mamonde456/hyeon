@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import Menu from "./components/Menu";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { LeftArrow, RightArrow } from "./arrows";
 import { motion } from "framer-motion";
 
@@ -208,27 +208,6 @@ const Msg = styled(motion.div)`
     top: -50px;
   }
 `;
-const UserTitle = styled.div`
-  /* width: 160px; */
-  height: 40px;
-  padding: 10px;
-  border-radius: 30px;
-  background-color: #647e68;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  color: white;
-  svg {
-    width: 40px;
-    height: 40px;
-    padding: 10px;
-    fill: white;
-  }
-  p {
-    /* padding: 10px; */
-  }
-`;
 
 const ResumeBtn = styled.a`
   width: 200px;
@@ -238,16 +217,10 @@ const ResumeBtn = styled.a`
   border-radius: 10px;
 `;
 
-const Text = styled.p`
-  padding: 10px;
-  text-align: center;
-`;
-
 const Profile = () => {
   const [isSlide, setIsSlide] = useState(false);
   const [duration, setDuration] = React.useState(500);
   const [show, setShow] = useState(false);
-  const copyRef = useRef<HTMLDivElement>(null);
 
   const contents = {
     number: "02",
@@ -657,7 +630,7 @@ const Profile = () => {
                   <ResumeBtn
                     onClick={() =>
                       window.open(
-                        `${process.env.PUBLIC_URL}/assets/resume_choi_hyeonji.pdf`
+                        `${process.env.PUBLIC_URL}/assets/2022_이력서_최현지.pdf`
                       )
                     }
                   >

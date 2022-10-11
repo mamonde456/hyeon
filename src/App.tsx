@@ -1,7 +1,8 @@
 import Router from "./Router";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
 import { RecoilRoot } from "recoil";
+import { useEffect, useState } from "react";
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -64,12 +65,47 @@ a {
 }
 `;
 
+const Width = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
 function App() {
+  const [size, setSize] = useState(false);
+  const resizing = () => {
+    const width = window.innerWidth;
+    width <= 800 ? setSize(true) : setSize(false);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", resizing);
+
+    return () => {
+      window.removeEventListener("resize", resizing);
+    };
+  }, []);
   return (
     <RecoilRoot>
       <GlobalStyle />
-      <Header />
-      <Router />
+
+      {size ? (
+        <Width>
+          <p>화면 사이즈가 너무 작습니다.</p>
+          <p>해당 웹사이트는 1920에 맞춰 제작되어 PC를 통해 봐주세요.</p>
+        </Width>
+      ) : (
+        <>
+          <Header />
+          <Router />
+        </>
+      )}
     </RecoilRoot>
   );
 }
