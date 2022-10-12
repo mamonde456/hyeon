@@ -460,7 +460,9 @@ const Profile = () => {
                   >
                     <TabBox>
                       <TabText>
-                        <span>Front-end</span>
+                        <span style={{ backgroundColor: "orange" }}>
+                          Front-end
+                        </span>
                       </TabText>
                       <TabText className="skill">
                         <svg
