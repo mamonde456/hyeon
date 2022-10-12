@@ -44,13 +44,13 @@ export interface IProject {
 
 export const projectData = [
   {
-    id: 0,
-    title: "navitrip",
-    work: "coding",
-    etc: "반응형",
-    date: "2020-12-01",
+    id: 2,
+    title: "portfolio",
+    work: "design/front-end",
+    etc: "",
+    date: "2022-09-02 ~",
     imgUrl: "/assets/homepage_img_",
-    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
+    pageUrl: "",
   },
   {
     id: 1,
@@ -62,22 +62,23 @@ export const projectData = [
     pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
   },
   {
-    id: 2,
-    title: "...",
-    work: "...",
-    etc: "...",
-    date: "...",
-    imgUrl: "/assets/nothing_image_",
-    pageUrl: "...",
+    id: 0,
+    title: "navitrip",
+    work: "planning/design/front-end",
+    etc: "반응형",
+    date: "2020-12-01",
+    imgUrl: "/assets/homepage_img_",
+    pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
   },
+
   {
     id: 3,
-    title: "...",
-    work: "...",
-    etc: "...",
-    date: "...",
+    title: "",
+    work: "",
+    etc: "",
+    date: "",
     imgUrl: "/assets/nothing_image_",
-    pageUrl: "...",
+    pageUrl: "",
   },
 ];
 
@@ -167,7 +168,7 @@ export const contentsData = [
     ],
     use: [
       { text: "pug" },
-      { text: "javascript ES6" },
+      { text: "ES6" },
       { text: "node.js" },
       { text: "MongoDB" },
     ],
@@ -238,6 +239,115 @@ export const contentsData = [
       {
         text: "youtube-clone-coding 회고록",
         url: "https://velog.io/@mamonde456/youtube-clone-coding을-하면서-힘들었던-점",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "portfolio website",
+    introText:
+      "처음 만들었던 포토폴리오 웹사이트를 리액트로 리메이크 해보았습니다.",
+    Role: [
+      { id: 1, text: "design" },
+      { id: 2, text: "front-end" },
+    ],
+    use: [
+      { text: "react" },
+      { text: "typescript" },
+      { text: "styled-components" },
+      { text: "framer-motion" },
+      { text: "recoil" },
+    ],
+    tabImg: [
+      {
+        id: 4,
+        icon: "react",
+        label: [
+          {
+            text: "useEffect로 윈도우의 사이즈를 실시간으로 가져와 state에 저장한다.",
+          },
+          {
+            text: "useState로 상태관리를 이용해 조건 렌더링한다.",
+          },
+        ],
+        imgUrl: "/assets/visual_react.jpg",
+      },
+      {
+        id: 5,
+        icon: "typescript",
+        label: [
+          {
+            text: "interface를 정의하여 사용한다.",
+          },
+          {
+            text: "interface를 export해서 다른 파일에서도 사용할 수 있도록 한다.",
+          },
+        ],
+        imgUrl: "/assets/visual_typescript.jpg",
+      },
+
+      {
+        id: 5,
+        icon: "styled-components",
+        label: [
+          {
+            text: "props를 사용하여 변수를 css 전달한다.",
+          },
+          {
+            text: "sass 사용으로 className을 통한 개별 css를 적용해줄 수 있다. (인라인 방식으로도 사용)",
+          },
+        ],
+        imgUrl: "/assets/visual_styled.jpg",
+      },
+      {
+        id: 5,
+        icon: "framer-motion",
+        label: [
+          {
+            text: "애니메이션을 실행할 컴포넌트는 <motion.div>로 적어준다. styled-components의 경우, styled(motion.div)로 사용한다.",
+          },
+          {
+            text: "AnimatePresence 안에 animation을 실행할 컴포넌트를 넣어준다.",
+          },
+          {
+            text: "variants를 선언하고 커스텀해주어 애니메이션 실행한다.",
+          },
+        ],
+        imgUrl: "/assets/visual_framer.jpg",
+      },
+      {
+        id: 5,
+        icon: "recoil",
+        label: [
+          {
+            text: "useState와 유사하지만 전역에서 변수를 사용하기 위해 recoil atom을 사용한다.",
+          },
+          {
+            text: "사용할 atom의 key와 default를 선언해준다.",
+          },
+          {
+            text: "값을 불러와 사용할 때는 useRecoilValue, 값을 가져오고 변경할 때는 useSetRecoilState를 사용한다.",
+          },
+        ],
+        imgUrl: "/assets/visual_recoil.jpg",
+      },
+    ],
+    experience: [
+      {
+        text: "react-horizontal-scrolling-menu를 이용한 horizontal scrolling menu 구현",
+        url: "https://velog.io/@mamonde456/React-horizontal-scroling-menu-구현하기",
+      },
+      {
+        text: "react-scroll-wheel-handler을 이용한 horizontal scrolling 페이지 구현",
+        url: "https://velog.io/@mamonde456/React-horizontal-scrolling-페이지-구현하기",
+      },
+      {
+        text: "react로 accordion menu 구현",
+        url: "https://velog.io/@mamonde456/React-accordion-menu-만들기-2",
+      },
+      {
+        text: "frame motion을 이용한 tab menu",
+        url: "https://velog.io/@mamonde456/React-tab-menu-구현하기",
       },
     ],
   },
