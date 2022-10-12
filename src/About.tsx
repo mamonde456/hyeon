@@ -44,6 +44,13 @@ const Intro = styled.div<{ end: string }>`
       }
     }
   }
+  .introText {
+    width: 900px;
+    padding-left: 30px;
+    li {
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 const ScrollBox = styled(motion.div)`
@@ -79,7 +86,7 @@ const IntroBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 `;
 
 const Over = styled(motion.div)`
@@ -270,7 +277,7 @@ const About = () => {
     if (deltaY > 0 && slide === true && el.scrollLeft === el.offsetWidth) {
       setLeft(true);
       setSlide(false);
-      if (tabCount <= 2) {
+      if (tabCount <= 1) {
         setTabCount(tabCount + 1);
       }
       setTab(aboutArray[0 + tabCount]);
@@ -355,13 +362,24 @@ const About = () => {
                     </motion.span>
                   </motion.p>
                 </Over>
-                <p>가 되고자 하는 최 현지입니다.</p>
+                <p>
+                  가 되고 싶어 끊임없이 노력하는 신입 프론트엔드 개발자입니다
+                </p>
               </IntroBox>
-              <p>
-                시각적으로 즐거운 인터랙티브한 페이지를 만드는 것에 흥미를
-                가지고 있습니다. 사용자에게 편리한 UI와 최적의 경험을 주는 웹을
-                만들기 위해 노력합니다.
-              </p>
+              <ul style={{ listStyle: "square" }} className="introText">
+                <li>
+                  시각적으로 즐거운 인터랙티브한 페이지를 만드는 것에 흥미를
+                  가지고 있습니다.
+                </li>
+                <li>
+                  사용자에게 편리한 UI와 최적의 경험을 주는 웹을 만들기 위해
+                  노력합니다.
+                </li>
+                <li>
+                  나아가 배운 지식을 사용해 코드를 논리적으로 구축하고 컴퓨터
+                  언어로 구현할 수 있는 개발자가 되고 싶습니다.
+                </li>
+              </ul>
             </div>
             <ScrollBox
               onHoverStart={() => setWidth("80px")}
