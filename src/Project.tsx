@@ -120,7 +120,7 @@ const Project = () => {
           }}
           exit={{ width: 0 }}
         >
-          {click.title === "..." ? null : (
+          {click.title === "" ? null : (
             <Contents
               contents={click}
               key={click.title + click.id}
