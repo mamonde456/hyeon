@@ -50,6 +50,7 @@ const ContentsBtn = styled.div`
   height: 60px;
   position: absolute;
   right: 0;
+  z-index: 1;
   background-color: black;
   color: black;
   border: solid 1px white;
