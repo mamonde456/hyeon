@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import styled from "styled-components";
 import { aboutArray, IAbout } from "./aboutData";
 import Menu from "./components/Menu";
@@ -231,7 +230,7 @@ const About = () => {
     };
   });
 
-  const up = (e: any) => {
+  const onWheel = (e: any) => {
     const { deltaY } = e;
     const el = containerRef.current;
 
@@ -259,13 +258,6 @@ const About = () => {
       setTab(aboutArray[0 + tabCount]);
       setSlide(true);
     }
-  };
-
-  const down = (e: any) => {
-    const el = containerRef.current;
-    const { deltaY } = e;
-    if (!el) return;
-
     if (deltaY > 0 && slide === true && left === false) {
       setSlide(false);
       el.scrollTo({
@@ -307,146 +299,139 @@ const About = () => {
   };
 
   return (
-    <ReactScrollWheelHandler
-      upHandler={(e) => up(e)}
-      downHandler={(e) => down(e)}
-    >
-      <Wrapper ref={containerRef}>
-        <Menu contents={contents}></Menu>
-        <div className="box">
-          <Intro end={typing.length === 6 ? "none" : "block"}>
-            <div>
-              <div className="hello">
-                <span>{typing}</span>
-              </div>
-              <IntroBox>
-                <Over
-                  onClick={() => setCoder((prev) => !prev)}
-                  initial={{ width: "65px" }}
-                  animate={{
-                    width: coder ? "280px" : "65px",
-                    // opacity: show ? 1 : 0,
-                  }}
-                >
-                  <motion.p>
-                    Coder
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: coder ? 1 : 0,
-                        display: coder ? "block" : "none",
-                      }}
-                    >
-                      : 코드를 따라서 치는 사람
-                    </motion.span>
-                  </motion.p>
-                </Over>
-                <p>가 아닌</p>
-                <Over
-                  onClick={() => setDeveloper((prev) => !prev)}
-                  initial={{ width: "90px" }}
-                  animate={{
-                    width: developer ? "400px" : "90px",
-                  }}
-                >
-                  <motion.p>
-                    Developer
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: developer ? 1 : 0,
-                        display: developer ? "block" : "none",
-                      }}
-                    >
-                      : 생각하고 논리적으로 코드를 쓰는 사람
-                    </motion.span>
-                  </motion.p>
-                </Over>
-                <p>
-                  가 되고 싶어 끊임없이 노력하는 신입 프론트엔드 개발자입니다
-                </p>
-              </IntroBox>
-              <ul style={{ listStyle: "square" }} className="introText">
-                <li>
-                  시각적으로 즐거운 인터랙티브한 페이지를 만드는 것에 흥미를
-                  가지고 있습니다.
-                </li>
-                <li>
-                  사용자에게 편리한 UI와 최적의 경험을 주는 웹을 만들기 위해
-                  노력합니다.
-                </li>
-                <li>
-                  나아가 배운 지식을 사용해 코드를 논리적으로 구축하고 컴퓨터
-                  언어로 구현할 수 있는 개발자가 되고 싶습니다.
-                </li>
-              </ul>
+    <Wrapper ref={containerRef} onWheel={onWheel}>
+      <Menu contents={contents}></Menu>
+      <div className="box">
+        <Intro end={typing.length === 6 ? "none" : "block"}>
+          <div>
+            <div className="hello">
+              <span>{typing}</span>
             </div>
-            <ScrollBox
-              onHoverStart={() => setWidth("80px")}
-              onHoverEnd={() => setWidth("60px")}
-              onClick={() => moveScroll("right")}
-            >
-              <div style={{ width, height: width }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z" />
-                </svg>
-              </div>
-              <Scroll>scroll</Scroll>
-            </ScrollBox>
-          </Intro>
-        </div>
-        <div className="box">
-          <Box key={tab.title} ref={scrollRef}>
-            <Contents bgColor={tab.color}>
-              {aboutArray?.map((item: IAbout) => (
-                <Content
-                  onClick={() => onClick(item)}
-                  className={item === tab ? "selected" : ""}
-                >
-                  {item.title}
-                </Content>
-              ))}
-            </Contents>
-
-            <AnimatePresence exitBeforeEnter>
-              {tab ? (
-                <Inner key={tab.title} bgColor={tab.color}>
-                  <Title>{tab.title}</Title>
-                  <InnerBox
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      type: "tween",
+            <IntroBox>
+              <Over
+                onClick={() => setCoder((prev) => !prev)}
+                initial={{ width: "65px" }}
+                animate={{
+                  width: coder ? "280px" : "65px",
+                  // opacity: show ? 1 : 0,
+                }}
+              >
+                <motion.p>
+                  Coder
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: coder ? 1 : 0,
+                      display: coder ? "block" : "none",
                     }}
                   >
-                    <TextBox>
-                      {tab.text.map((item) => (
-                        <p>{item.innerText}</p>
-                      ))}
-                    </TextBox>
-                  </InnerBox>
-                </Inner>
-              ) : null}
-            </AnimatePresence>
-            <ScrollBox
-              className="leftScroll"
-              onHoverStart={() => setWidth("80px")}
-              onHoverEnd={() => setWidth("60px")}
-              onClick={() => moveScroll("left")}
-            >
-              <div style={{ width, height: width }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path d="M109.3 288L480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288z" />
-                </svg>
-              </div>
-              <Scroll>scroll</Scroll>
-            </ScrollBox>
-          </Box>
-        </div>
-      </Wrapper>
-    </ReactScrollWheelHandler>
+                    : 코드를 따라서 치는 사람
+                  </motion.span>
+                </motion.p>
+              </Over>
+              <p>가 아닌</p>
+              <Over
+                onClick={() => setDeveloper((prev) => !prev)}
+                initial={{ width: "90px" }}
+                animate={{
+                  width: developer ? "400px" : "90px",
+                }}
+              >
+                <motion.p>
+                  Developer
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: developer ? 1 : 0,
+                      display: developer ? "block" : "none",
+                    }}
+                  >
+                    : 생각하고 논리적으로 코드를 쓰는 사람
+                  </motion.span>
+                </motion.p>
+              </Over>
+              <p>가 되고 싶어 끊임없이 노력하는 신입 프론트엔드 개발자입니다</p>
+            </IntroBox>
+            <ul style={{ listStyle: "square" }} className="introText">
+              <li>
+                시각적으로 즐거운 인터랙티브한 페이지를 만드는 것에 흥미를
+                가지고 있습니다.
+              </li>
+              <li>
+                사용자에게 편리한 UI와 최적의 경험을 주는 웹을 만들기 위해
+                노력합니다.
+              </li>
+              <li>
+                나아가 배운 지식을 사용해 코드를 논리적으로 구축하고 컴퓨터
+                언어로 구현할 수 있는 개발자가 되고 싶습니다.
+              </li>
+            </ul>
+          </div>
+          <ScrollBox
+            onHoverStart={() => setWidth("80px")}
+            onHoverEnd={() => setWidth("60px")}
+            onClick={() => moveScroll("right")}
+          >
+            <div style={{ width, height: width }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z" />
+              </svg>
+            </div>
+            <Scroll>scroll</Scroll>
+          </ScrollBox>
+        </Intro>
+      </div>
+      <div className="box">
+        <Box key={tab.title} ref={scrollRef}>
+          <Contents bgColor={tab.color}>
+            {aboutArray?.map((item: IAbout) => (
+              <Content
+                onClick={() => onClick(item)}
+                className={item === tab ? "selected" : ""}
+              >
+                {item.title}
+              </Content>
+            ))}
+          </Contents>
+
+          <AnimatePresence exitBeforeEnter>
+            {tab ? (
+              <Inner key={tab.title} bgColor={tab.color}>
+                <Title>{tab.title}</Title>
+                <InnerBox
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    type: "tween",
+                  }}
+                >
+                  <TextBox>
+                    {tab.text.map((item) => (
+                      <p>{item.innerText}</p>
+                    ))}
+                  </TextBox>
+                </InnerBox>
+              </Inner>
+            ) : null}
+          </AnimatePresence>
+          <ScrollBox
+            className="leftScroll"
+            onHoverStart={() => setWidth("80px")}
+            onHoverEnd={() => setWidth("60px")}
+            onClick={() => moveScroll("left")}
+          >
+            <div style={{ width, height: width }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M109.3 288L480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288z" />
+              </svg>
+            </div>
+            <Scroll>scroll</Scroll>
+          </ScrollBox>
+        </Box>
+      </div>
+    </Wrapper>
   );
 };
 

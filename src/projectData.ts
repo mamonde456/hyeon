@@ -47,7 +47,7 @@ export const projectData = [
     id: 2,
     title: "portfolio",
     work: "design/front-end",
-    etc: "",
+    etc: "react.js",
     date: "2022-09-02 ~",
     imgUrl: "/assets/homepage_img_",
     pageUrl: "",
@@ -56,7 +56,7 @@ export const projectData = [
     id: 1,
     title: "youtube clone coding",
     work: "front-end/back-end",
-    etc: "",
+    etc: "node.js",
     date: "2022-06-27 ~ 08-05",
     imgUrl: "/assets/homepage_img_",
     pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
@@ -154,6 +154,10 @@ export const contentsData = [
       { text: "전반적인 기획과 디자인 및 코딩의 과정", url: "" },
       { text: "마크업 구조의 중요성", url: "" },
       { text: "flex, grid 등의 css3 활용", url: "" },
+      {
+        text: "javascript로 slide animation 및 scroll animation 구현",
+        url: "",
+      },
     ],
   },
   {
@@ -348,6 +352,10 @@ export const contentsData = [
       {
         text: "frame motion을 이용한 tab menu",
         url: "https://velog.io/@mamonde456/React-tab-menu-구현하기",
+      },
+      {
+        text: "portfolio 웹사이트 만들면서 힘들었던 점",
+        url: "https://velog.io/@mamonde456/portfolio-웹사이트-만들면서-힘들었던-점",
       },
     ],
   },
