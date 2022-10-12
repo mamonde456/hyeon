@@ -77,6 +77,7 @@ const Width = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  z-index: 9999;
 `;
 function App() {
   const [size, setSize] = useState(false);
@@ -95,17 +96,15 @@ function App() {
     <RecoilRoot>
       <GlobalStyle />
 
-      {size ? (
+      {size && (
         <Width>
           <p>화면 사이즈가 너무 작습니다.</p>
           <p>해당 웹사이트는 1920에 맞춰 제작되어 PC를 통해 봐주세요.</p>
         </Width>
-      ) : (
-        <>
-          <Header />
-          <Router />
-        </>
       )}
+
+      <Header />
+      <Router />
     </RecoilRoot>
   );
 }

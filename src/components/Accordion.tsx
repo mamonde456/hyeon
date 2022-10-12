@@ -29,6 +29,7 @@ const ContentsImg = styled.div<{ bgPhoto: string }>`
   background-position: center;
   background-size: cover;
   position: relative;
+  cursor: pointer;
 `;
 
 const Date = styled.p`
@@ -49,12 +50,14 @@ const ContentsBtn = styled.div`
   height: 60px;
   position: absolute;
   right: 0;
-  background-color: green;
+  background-color: black;
   color: black;
+  border: solid 1px white;
+  border-top: none;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border-radius: 200px;
+  border-radius: 0px 0px 30px 30px;
   p {
     width: 190px;
     height: 50px;
@@ -83,6 +86,10 @@ interface IProps {
 const Accordion = (props: IProps) => {
   const setShowAtom = useSetRecoilState(isShowAtom);
   const toggleBtn = () => setShowAtom((prev) => !prev);
+  const openFn = (pageUrl: string) => {
+    if (pageUrl === "") return;
+    window.open(pageUrl);
+  };
   return (
     <AccordionMenu>
       <Menu>
@@ -99,8 +106,9 @@ const Accordion = (props: IProps) => {
           bgPhoto={
             process.env.PUBLIC_URL + props.data.imgUrl + props.data.id + ".jpg"
           }
+          onClick={() => openFn(props.data.pageUrl)}
         >
-          {props.data.title === "..." ? null : (
+          {props.data.title === "" ? null : (
             <ContentsBtn onClick={toggleBtn}>
               <p>View details</p>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">

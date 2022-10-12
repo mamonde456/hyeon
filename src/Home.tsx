@@ -148,7 +148,7 @@ const MsgBox = styled(motion.div)<{ close: string }>`
   left: 100px;
   top: 50px;
   overflow: hidden;
-  z-index: 99999;
+  z-index: 99;
   display: ${(props) => (props.close === "false" ? "block" : "none")};
   .window {
     font-size: 18px;
