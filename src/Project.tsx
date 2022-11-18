@@ -75,7 +75,6 @@ const ProjectText = styled(motion.div)<{ show: string }>`
   right: 0;
   z-index: 2;
   background-color: black;
-  border-radius: 10px;
   display: ${(props) => (props.show === "true" ? "block" : "none")};
 `;
 

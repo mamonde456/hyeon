@@ -29,10 +29,12 @@ const ContentsBtn = styled.div`
 `;
 
 const SlideBtn = styled.div`
-  width: 50px;
+  width: 60px;
   height: 50px;
   padding: 10px;
   border: solid 1px white;
+  text-align: center;
+  border-radius: 10px;
 `;
 const HideBtn = styled.div`
   width: 160px;
@@ -184,9 +186,9 @@ const Section = styled.div`
 const UseList = styled(motion.ul)`
   width: 1200px;
   padding-left: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 50px; */
 `;
 const Use = styled(motion.li)`
   width: 100%;
@@ -263,10 +265,10 @@ const Outline = styled(motion.div)`
   }
 `;
 
-const TabImg = styled(motion.div)<{ imgUrl: string }>`
+const TabImg = styled(motion.div)<{ imgurl: string }>`
   width: 100%;
   height: 300px;
-  background-image: url(${(props) => props.imgUrl});
+  background-image: url(${(props) => props.imgurl});
   background-size: cover;
   background-position: center;
   margin-bottom: 20px;
@@ -620,7 +622,7 @@ const Contents = (props: IProps) => {
                       ))}
                     </UseList>
                   </Section>
-                  <Section>
+                  {/* <Section>
                     <Title>Description</Title>
                     <Explanations>
                       {contentsData[id]?.tabImg.map((item: ITab) => (
@@ -697,10 +699,10 @@ const Contents = (props: IProps) => {
                           exit={{ opacity: 0, y: 20 }}
                           transition={{ duration: 0.5, type: "tween" }}
                         >
-                          {selected.imgUrl ? (
+                          {selected.imgurl ? (
                             <TabImg
-                              imgUrl={`${
-                                process.env.PUBLIC_URL + selected.imgUrl
+                              imgurl={`${
+                                process.env.PUBLIC_URL + selected.imgurl
                               }`}
                               className={click ? "click" : ""}
                             >
@@ -724,7 +726,7 @@ const Contents = (props: IProps) => {
                         </motion.div>
                       </AnimatePresence>
                     </Outline>
-                  </Section>
+                  </Section> */}
                   <Section>
                     <Title className="projectTitle">
                       프로젝트를 진행하며 경험한 부분

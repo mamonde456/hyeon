@@ -25,7 +25,7 @@ export interface ITab {
   id: number;
   icon: string;
   label: IArray[];
-  imgUrl: string;
+  imgurl: string;
 }
 
 interface IArray {
@@ -38,27 +38,36 @@ export interface IProject {
   work: string;
   etc: string;
   date: string;
-  imgUrl: string;
+  imgurl: string;
   pageUrl: string;
 }
 
 export const projectData = [
+  {
+    id: 3,
+    title: "momentum clone coding",
+    work: "front-end/back-end",
+    etc: "react.js",
+    date: "2022-11-01 ~ 2022-11-15",
+    imgurl: "/assets/homepage_img_",
+    pageUrl: "https://momentum-clone-coding.herokuapp.com/",
+  },
   {
     id: 2,
     title: "portfolio",
     work: "design/front-end",
     etc: "react.js",
     date: "2022-09-02 ~",
-    imgUrl: "/assets/homepage_img_",
-    pageUrl: "",
+    imgurl: "/assets/homepage_img_",
+    pageUrl: "https://mamonde456.github.io/hyeon/",
   },
   {
     id: 1,
     title: "youtube clone coding",
     work: "front-end/back-end",
-    etc: "node.js",
+    etc: "",
     date: "2022-06-27 ~ 08-05",
-    imgUrl: "/assets/homepage_img_",
+    imgurl: "/assets/homepage_img_",
     pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
   },
   {
@@ -67,18 +76,8 @@ export const projectData = [
     work: "planning/design/front-end",
     etc: "반응형",
     date: "2020-12-01",
-    imgUrl: "/assets/homepage_img_",
+    imgurl: "/assets/homepage_img_",
     pageUrl: "http://mamonde456.dothome.co.kr/navitrip/",
-  },
-
-  {
-    id: 3,
-    title: "",
-    work: "",
-    etc: "",
-    date: "",
-    imgUrl: "/assets/nothing_image_",
-    pageUrl: "",
   },
 ];
 
@@ -111,7 +110,7 @@ export const contentsData = [
             text: "비주얼 이미지가 슬라이드 되면, 동시에 비행기 애니메이션도 재시작해야하기 때문에, 각각의 li 안에 애니메이션 요소를 넣었다.",
           },
         ],
-        imgUrl: "/assets/visual_markup.jpg",
+        imgurl: "/assets/visual_markup.jpg",
       },
       {
         id: 1,
@@ -124,7 +123,7 @@ export const contentsData = [
             text: "mobile 버전에서는 flex, grid를 사용하여 레이아웃을 구성했다.",
           },
         ],
-        imgUrl: "/assets/visual_css.jpg",
+        imgurl: "/assets/visual_css.jpg",
       },
       {
         id: 2,
@@ -146,7 +145,7 @@ export const contentsData = [
             text: "도트는 dot[dotNum]으로 대입하여 슬라이드와 함께 돌아갈 수 있게 해준다. 또한 css에서 기획을 끝내고 classList로 활성화/비활성화 해준다.",
           },
         ],
-        imgUrl: "/assets/visual_javascript.jpg",
+        imgurl: "/assets/visual_javascript.jpg",
       },
     ],
 
@@ -188,7 +187,7 @@ export const contentsData = [
             text: "pug의 mixins을 이용해 video의 array를 home에 렌더링한다.",
           },
         ],
-        imgUrl: "/assets/visual_pug.jpg",
+        imgurl: "/assets/visual_pug.jpg",
       },
       {
         id: 2,
@@ -204,7 +203,7 @@ export const contentsData = [
             text: "생성한 comment의 작성 시간, 작성자 등의 세부 내용을 받아와 javascript에서 새로운 element를 생성한다.",
           },
         ],
-        imgUrl: "/assets/visual_javascript_1.jpg",
+        imgurl: "/assets/visual_javascript_1.jpg",
       },
       {
         id: 3,
@@ -220,7 +219,7 @@ export const contentsData = [
             text: "생성한 Comment를 response로 보내준다.",
           },
         ],
-        imgUrl: "/assets/visual_node.jpg",
+        imgurl: "/assets/visual_node.jpg",
       },
     ],
     experience: [
@@ -274,7 +273,7 @@ export const contentsData = [
             text: "useState로 상태관리를 이용해 조건 렌더링한다.",
           },
         ],
-        imgUrl: "/assets/visual_react.jpg",
+        imgurl: "/assets/visual_react.jpg",
       },
       {
         id: 5,
@@ -287,7 +286,7 @@ export const contentsData = [
             text: "interface를 export해서 다른 파일에서도 사용할 수 있도록 한다.",
           },
         ],
-        imgUrl: "/assets/visual_typescript.jpg",
+        imgurl: "/assets/visual_typescript.jpg",
       },
 
       {
@@ -301,7 +300,7 @@ export const contentsData = [
             text: "sass 사용으로 className을 통한 개별 css를 적용해줄 수 있다. (인라인 방식으로도 사용)",
           },
         ],
-        imgUrl: "/assets/visual_styled.jpg",
+        imgurl: "/assets/visual_styled.jpg",
       },
       {
         id: 5,
@@ -317,7 +316,7 @@ export const contentsData = [
             text: "variants를 선언하고 커스텀해주어 애니메이션 실행한다.",
           },
         ],
-        imgUrl: "/assets/visual_framer.jpg",
+        imgurl: "/assets/visual_framer.jpg",
       },
       {
         id: 5,
@@ -333,7 +332,7 @@ export const contentsData = [
             text: "값을 불러와 사용할 때는 useRecoilValue, 값을 가져오고 변경할 때는 useSetRecoilState를 사용한다.",
           },
         ],
-        imgUrl: "/assets/visual_recoil.jpg",
+        imgurl: "/assets/visual_recoil.jpg",
       },
     ],
     experience: [
@@ -356,6 +355,46 @@ export const contentsData = [
       {
         text: "portfolio 웹사이트 만들면서 힘들었던 점",
         url: "https://velog.io/@mamonde456/portfolio-웹사이트-만들면서-힘들었던-점",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "momentum clone coding",
+    introText:
+      "chrome 확장 프로그램 momentum을 react로 clone coding 해보았습니다.",
+    Role: [
+      { id: 2, text: "front-end" },
+      { id: 3, text: "back-end" },
+      { id: 3, text: "deploy" },
+    ],
+    use: [
+      { text: "react" },
+      { text: "typescript" },
+      { text: "styled-components" },
+      { text: "framer-motion" },
+      { text: "recoil" },
+    ],
+    tabImg: [
+      {
+        id: 4,
+        icon: "react",
+        label: [
+          {
+            text: "자바스크립트로는 이미 만들어본 경험이 있어서 리액트로 만들어 보자 생각했고, api를 사용하려고 계획했기 때문에 리액트 쿼리의 도움을 받고자 리액트를 선택하였습니다. ",
+          },
+        ],
+        imgurl: "/assets/.jpg",
+      },
+    ],
+    experience: [
+      {
+        text: "spotify login으로 playlist 가져오기",
+        url: "https://velog.io/@mamonde456/spotify-login으로-playlist-가져오기",
+      },
+      {
+        text: "momentum clone coding 을 하면서 느낀 점",
+        url: "https://velog.io/@mamonde456/REACT-momentum-clone-coding-회고록",
       },
     ],
   },

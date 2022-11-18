@@ -105,9 +105,8 @@ const Accordion = (props: IProps) => {
       <div>
         <ContentsImg
           bgPhoto={
-            process.env.PUBLIC_URL + props.data.imgUrl + props.data.id + ".jpg"
+            process.env.PUBLIC_URL + props.data.imgurl + props.data.id + ".jpg"
           }
-          onClick={() => openFn(props.data.pageUrl)}
         >
           {props.data.title === "" ? null : (
             <ContentsBtn onClick={toggleBtn}>
@@ -117,6 +116,10 @@ const Accordion = (props: IProps) => {
               </svg>
             </ContentsBtn>
           )}
+          <div
+            style={{ width: "100%", height: "100%" }}
+            onClick={() => openFn(props.data.pageUrl)}
+          ></div>
         </ContentsImg>
       </div>
     </AccordionMenu>
