@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { aboutArray, IAbout } from "./aboutData";
-import Menu from "./components/Menu";
+import { aboutArray, IAbout } from "../aboutData";
+import Menu from "../components/Menu";
 
 const Wrapper = styled.div`
   height: 100%;

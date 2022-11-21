@@ -1,8 +1,9 @@
-import Router from "./Router";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
 import { RecoilRoot } from "recoil";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -79,7 +80,7 @@ const Width = styled.div`
   gap: 10px;
   z-index: 9999;
 `;
-function App() {
+function Root() {
   const [size, setSize] = useState(false);
   const resizing = () => {
     const width = window.innerWidth;
@@ -95,7 +96,6 @@ function App() {
   return (
     <RecoilRoot>
       <GlobalStyle />
-
       {size && (
         <Width>
           <p>화면 사이즈가 너무 작습니다.</p>
@@ -104,9 +104,9 @@ function App() {
       )}
 
       <Header />
-      <Router />
+      <Outlet />
     </RecoilRoot>
   );
 }
 
-export default App;
+export default Root;

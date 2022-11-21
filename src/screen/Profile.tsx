@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-import Menu from "./components/Menu";
+import Menu from "../components/Menu";
 import React, { useState } from "react";
-import { LeftArrow, RightArrow } from "./arrows";
+import { LeftArrow, RightArrow } from "../arrows";
 import { motion } from "framer-motion";
 
 type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;

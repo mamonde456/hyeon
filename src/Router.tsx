@@ -1,21 +1,35 @@
-import { Route, Routes } from "react-router-dom";
-import About from "./About";
-import Home from "./Home";
-import Profile from "./Profile";
-import Project from "./Project";
+import { createBrowserRouter, Route, Routes } from "react-router-dom";
+import About from "./screen/About";
+import Home from "./screen/Home";
+import Profile from "./screen/Profile";
+import Project from "./screen/Project";
+import Root from "./App";
 
-const Router = () => {
-  return (
-    <>
-      <Routes>
-        <Route path={`/`} element={<Home />}>
-          <Route path={`/resume`} element={<Profile />}></Route>
-          <Route path={`/about`} element={<About />}></Route>
-          <Route path={`/project`} element={<Project />}></Route>
-        </Route>
-      </Routes>
-    </>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+        children: [
+          {
+            path: "/resume",
+            element: <Profile />,
+          },
+          {
+            path: "/about",
+            element: <About />,
+          },
+          {
+            path: "/project",
+            element: <Project />,
+          },
+        ],
+      },
+    ],
+  },
+]);
 
-export default Router;
+export default router;

@@ -2,11 +2,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import Accordion from "./components/Accordion";
-import { isShowAtom } from "./atom";
-import Contents from "./components/Contents";
-import Menu from "./components/Menu";
-import { IProject, projectData } from "./projectData";
+import Accordion from "../components/Accordion";
+import { isShowAtom } from "../atom";
+import Contents from "../components/Contents";
+import Menu from "../components/Menu";
+import { IProject, projectData } from "../projectData";
 
 const Wrapper = styled.div`
   width: 100%;

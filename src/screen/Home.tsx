@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Menu from "./components/Menu";
+import Menu from "../components/Menu";
 
 const Wrapper = styled(motion.div)`
   width: 100%;
