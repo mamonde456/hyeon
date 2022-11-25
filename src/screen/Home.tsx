@@ -235,7 +235,7 @@ const Home = () => {
     number: "01",
     title: "HOME",
   };
-  const homeMatch = useMatch("/");
+  const homeMatch = useMatch("/hyeon");
   const resumeMatch = useMatch("/resume");
   const aboutMatch = useMatch("/about");
   const projectMatch = useMatch("/project");
