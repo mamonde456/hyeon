@@ -7,7 +7,7 @@ import Root from "./App";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/hyeon",
     element: <Root />,
     children: [
       {
@@ -15,15 +15,15 @@ const router = createBrowserRouter([
         element: <Home />,
         children: [
           {
-            path: "/resume",
+            path: "resume",
             element: <Profile />,
           },
           {
-            path: "/about",
+            path: "about",
             element: <About />,
           },
           {
-            path: "/project",
+            path: "project",
             element: <Project />,
           },
         ],

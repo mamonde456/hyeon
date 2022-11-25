@@ -268,17 +268,17 @@ const Home = () => {
   const onOpen = (el: number) => {
     setId(String(el));
     if (el === 0) {
-      navigator("/resume");
+      navigator("resume");
     } else if (el === 1) {
-      navigator("/about");
+      navigator("about");
     } else if (el === 2) {
-      navigator("/project");
+      navigator("project");
     }
   };
 
   const closeBtn = () => {
     setId(null);
-    navigator("/");
+    navigator("/hyeon");
   };
   return (
     <Wrapper ref={constraintsRef}>
