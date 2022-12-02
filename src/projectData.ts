@@ -50,7 +50,7 @@ export const projectData = [
     etc: "react.js",
     date: "2022-11-01 ~ 2022-11-15",
     imgurl: "/assets/homepage_img_",
-    pageUrl: "https://momentum-clone-coding.herokuapp.com/",
+    pageUrl: "https://tomentum-clone-coding.netlify.app",
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ export const projectData = [
     etc: "",
     date: "2022-06-27 ~ 08-05",
     imgurl: "/assets/homepage_img_",
-    pageUrl: "https://wetube-clone-coding-js.herokuapp.com/",
+    pageUrl: "https://wetube-clone-coding.fly.dev",
   },
   {
     id: 0,
