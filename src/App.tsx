@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import { RecoilRoot } from "recoil";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -93,19 +94,25 @@ function Root() {
       window.removeEventListener("resize", resizing);
     };
   }, []);
-  return (
-    <RecoilRoot>
-      <GlobalStyle />
-      {size && (
-        <Width>
-          <p>화면 사이즈가 너무 작습니다.</p>
-          <p>해당 웹사이트는 1920에 맞춰 제작되어 PC를 통해 봐주세요.</p>
-        </Width>
-      )}
 
-      <Header />
-      <Outlet />
-    </RecoilRoot>
+  return (
+    <>
+      <Helmet>
+        <title>hyeon-ji choi</title>
+      </Helmet>
+      <RecoilRoot>
+        <GlobalStyle />
+        {size && (
+          <Width>
+            <p>화면 사이즈가 너무 작습니다.</p>
+            <p>해당 웹사이트는 1920에 맞춰 제작되어 PC를 통해 봐주세요.</p>
+          </Width>
+        )}
+
+        <Header />
+        <Outlet />
+      </RecoilRoot>
+    </>
   );
 }
 
