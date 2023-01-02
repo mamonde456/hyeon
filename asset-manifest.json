@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/hyeon/static/js/main.37793a89.js",
+    "main.js": "/hyeon/static/js/main.6347d2eb.js",
     "index.html": "/hyeon/index.html",
-    "main.37793a89.js.map": "/hyeon/static/js/main.37793a89.js.map"
+    "main.6347d2eb.js.map": "/hyeon/static/js/main.6347d2eb.js.map"
   },
   "entrypoints": [
-    "static/js/main.37793a89.js"
+    "static/js/main.6347d2eb.js"
   ]
 }
