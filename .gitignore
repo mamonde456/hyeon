@@ -11,7 +11,9 @@
 # production
 /build
 
-/public
+/public/*
+aboutData.ts
+projectData.ts
 
 # misc
 .DS_Store
@@ -23,3 +25,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+public/favicon.ico
+src/aboutData.ts
