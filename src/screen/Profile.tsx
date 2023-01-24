@@ -111,7 +111,6 @@ const Title = styled.div`
 const User = styled.div<{ bgPhoto: string }>`
   width: 500px;
   height: 100%;
-  /* padding: 10px; */
   background-color: black;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
     url(${(props) => props.bgPhoto});
@@ -632,7 +631,7 @@ const Profile = () => {
                   <ResumeBtn
                     onClick={() =>
                       window.open(
-                        `${process.env.PUBLIC_URL}/assets/2022_이력서_최현지.pdf`
+                        `${process.env.PUBLIC_URL}/assets/이력서_최현지.pdf`
                       )
                     }
                   >
@@ -647,7 +646,7 @@ const Profile = () => {
                   }}
                 >
                   <ResumeBtn
-                    href={`${process.env.PUBLIC_URL}/assets/2022_이력서_최현지.pdf`}
+                    href={`${process.env.PUBLIC_URL}/assets/이력서_최현지.pdf`}
                     download
                   >
                     이력서 다운로드
