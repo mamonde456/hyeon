@@ -338,7 +338,7 @@ const Profile = () => {
                     EDUCATION
                   </Title>
                   <TabText>
-                    숭의여자대학교 패션디자인과<Date>2014.03~ 2017.02</Date>
+                    숭의여자대학교 패션디자인과<Date>2017.03~ 2019.02</Date>
                   </TabText>
                   <TabText>
                     프론트엔드 웹퍼블리셔 양성과정 - A
